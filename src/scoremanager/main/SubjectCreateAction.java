@@ -24,13 +24,13 @@ public class SubjectCreateAction  extends Action {
     	// 現在の年を取得
     	int year = todaysDate.getYear();*/
     	// クラス番号Daoを初期化
-    	SubjectDao cNumDao = new ClassNumDao();
+    	SubjectDao subjectDao = new ClassNumDao();
 
 
     	// ３
     	// ＤＢからデータ取得
     	// ログインユーザの学校コードをもとにクラス番号の一覧を取得
-    	List<String>list = cNumDao.filter( student.getSchool() );
+    	List<String>list = subjectDao.filter( student.getSchool() );
 
     	/*List<Integer> entYearSet = new ArrayList<>();*/
     	// 10年前から1年後まで年をリストに追加
