@@ -15,14 +15,16 @@ public class SubjectCreateExecuteAction  extends Action {
 	// オーバーライド
 	@Override
     public void execute (HttpServletRequest request, HttpServletResponse response) throws Exception{
-/*
+
+
+
+		/*
 		HttpSession session = request.getSession();
     	Teacher teacher = (Teacher)session.getAttribute("user");
     	School school = teacher.getSchool();*/
 
 		// 学生Dao
     	StudentDao sDao = new StudentDao();
-
 		Student student = new Student();
 
  /*   	int entYear = 0;       // 入力値：入学年度
@@ -35,18 +37,20 @@ public class SubjectCreateExecuteAction  extends Action {
     	// エラーメッセージ
     	Map<String, String> errors = new HashMap<>();
 
+
+
     	// ２
     	// リクエストパラメータの取得
     	System.out.println( "リクエスト取得" );
     /*	entYear = Integer.parseInt( request.getParameter("ent_year") );
     	no = request.getParameter("no");*/
-    	name = request.getParameter("name");
-    	classNum = request.getParameter("class_num");
+    	subjectcd = request.getParameter("name");
+    	subjectname = request.getParameter("class_num");
 
     	// 条件：入学年度の指定が無い
     	if ( entYear == 0 ) {
     		request.setAttribute("no", no);
-    		request.setAttribute("name", name);
+    		request.setAttribute("name", subjectcd);
     		request.setAttribute("class_num", classNum);
     		errors.put( "error1", "入学年度を指定してください" );
     		request.setAttribute( "errors", errors );
@@ -56,7 +60,7 @@ public class SubjectCreateExecuteAction  extends Action {
     	System.out.println( "sutudentにセット" );
     	student.setEntYear(entYear);
     	student.setNo(no);
-    	student.setName(name);
+    	student.setName(subjectcd);
     	student.setClassNum(classNum);
     	student.setAttend(isAttend);
     	student.setSchool(school);
@@ -64,7 +68,7 @@ public class SubjectCreateExecuteAction  extends Action {
     	if ( sDao.get(no) != null ) {
     		request.setAttribute("ent_year", entYear);
     		request.setAttribute("no", no);
-    		request.setAttribute("name", name);
+    		request.setAttribute("name",subjectcd);
     		request.setAttribute("class_num", classNum);
     		errors.put( "error2", "学生番号が重複しています" );
     		request.setAttribute( "errors", errors );
