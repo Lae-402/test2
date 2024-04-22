@@ -5,11 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import bean.School;
 import bean.Student;
-import bean.Teacher;
 import dao.StudentDao;
 import tool.Action;
 
@@ -18,22 +15,22 @@ public class SubjectCreateExecuteAction  extends Action {
 	// オーバーライド
 	@Override
     public void execute (HttpServletRequest request, HttpServletResponse response) throws Exception{
-
+/*
 		HttpSession session = request.getSession();
     	Teacher teacher = (Teacher)session.getAttribute("user");
-    	School school = teacher.getSchool();
+    	School school = teacher.getSchool();*/
 
 		// 学生Dao
     	StudentDao sDao = new StudentDao();
 
 		Student student = new Student();
 
-    	int entYear = 0;       // 入力値：入学年度
-    	String no = "";                // 入力値：学生番号
-    	String name = "";              // 入力値：氏名
-    	String classNum = "";         // 入力値：クラス
-    	boolean isAttend = true;     // 在学フラグ：一律でtrue
-    	boolean done = false;
+ /*   	int entYear = 0;       // 入力値：入学年度
+    	String no = "";   */             // 入力値：学生番号
+    	String subjectcd = "";              // 入力値：科目コード
+    	String subjectname = "";         // 入力値：科目名
+/*    	boolean isAttend = true;     // 在学フラグ：一律でtrue
+    	boolean done = false;*/
 
     	// エラーメッセージ
     	Map<String, String> errors = new HashMap<>();
@@ -41,8 +38,8 @@ public class SubjectCreateExecuteAction  extends Action {
     	// ２
     	// リクエストパラメータの取得
     	System.out.println( "リクエスト取得" );
-    	entYear = Integer.parseInt( request.getParameter("ent_year") );
-    	no = request.getParameter("no");
+    /*	entYear = Integer.parseInt( request.getParameter("ent_year") );
+    	no = request.getParameter("no");*/
     	name = request.getParameter("name");
     	classNum = request.getParameter("class_num");
 
