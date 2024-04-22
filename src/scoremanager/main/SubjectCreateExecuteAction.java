@@ -47,8 +47,13 @@ public class SubjectCreateExecuteAction  extends Action {
     	subjectcd = request.getParameter("name");
     	subjectname = request.getParameter("class_num");
 
+
+
+
+    	/*えらー
+    	科目コード文字数エラー*/
     	// 条件：入学年度の指定が無い
-    	if ( entYear == 0 ) {
+    	if ( subjectcd == 0 ) {
     		request.setAttribute("no", no);
     		request.setAttribute("name", subjectcd);
     		request.setAttribute("class_num", classNum);

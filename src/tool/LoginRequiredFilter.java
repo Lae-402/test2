@@ -1,4 +1,4 @@
-package tool;
+/*package tool;
 
 import java.io.IOException;
 
@@ -16,9 +16,9 @@ import bean.Teacher;
 
 @WebFilter(urlPatterns = { "/scoremanager/main/*" })
 public class LoginRequiredFilter implements Filter {
-	/**
+	*//**
 	 * doFilterメソッド フィルター処理を記述
-	 */
+	 *//*
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
@@ -42,3 +42,4 @@ public class LoginRequiredFilter implements Filter {
 	public void destroy() {
 	}
 }
+*/
