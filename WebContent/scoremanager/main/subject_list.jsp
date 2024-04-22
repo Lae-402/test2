@@ -52,4 +52,3 @@
     </table>
 </section>
 </c:set>
-
