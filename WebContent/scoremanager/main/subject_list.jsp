@@ -21,7 +21,7 @@
 				<label class="form-label" for="subject-f1-select">科目コード</label>
 				<select class="form-select" id="subject-f1-select" name="f1">
 					<option value="0">--</option>
-					<c:forEach var="year" items="${subject_code_set}">
+					<c:forEach var="code" items="${subject_code_set}">
 						<%-- 現在のyearと選択されていたf1が一致していた場合selectedを記述 --%>
 						<option value="${code}" <c:if test="${code==f1}">selected</c:if>>${code}</option>
 					</c:forEach>
@@ -50,12 +50,12 @@
 				</tr>
 				<c:forEach var="subject" items="${subject}">
 					<tr>
-						<td>${subject.entYear}</td>
+						<td>${subject.code}</td>
 						<td>${subject.name}</td>
 						<td class="text-center">
 						</td>
 						<td><a href="SubjectUpdate.action?name=${subject.name}">変更</a></td>
-						<td><a href="SubjectDelite.action？name=${subject.name} }">削除</a></td>
+						<td><a href="SubjectDelite.action？name=${subject.name}">削除</a></td>
 					</tr>
 				</c:forEach>
 			</table>
