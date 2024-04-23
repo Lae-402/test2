@@ -21,6 +21,7 @@ public class SubjectDao extends Dao {
 		// プリペアードステートメント
 		PreparedStatement statement = null;
 
+
 		try {
 			// プリペアードステートメントにSQL文をセット
 			statement = connection.prepareStatement("select * from subject where school_cd=? and cd=? and deleted=false");
@@ -29,6 +30,7 @@ public class SubjectDao extends Dao {
 			statement.setString(2, cd);
 			// プリペアードステートメントを実行
 			ResultSet rSet = statement.executeQuery();
+
 
 			if (rSet.next()) {
 				// リザルトセットが存在する場合
