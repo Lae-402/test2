@@ -5,7 +5,7 @@ public class Subject implements java.io.Serializable {
 	//学生名
 	private String name;
 	//学校コード
-	private String school;
+	private School school;
 	private String cd;
 
 	//ゲッター
@@ -15,7 +15,7 @@ public class Subject implements java.io.Serializable {
 	public String getCd() {
 		return cd;
 	}
-	public String getSchool() {
+	public School getSchool() {
 		return school;
 	}
 
@@ -26,7 +26,7 @@ public class Subject implements java.io.Serializable {
 	public void setCd(String cd) {
 		this.cd = cd;
 	}
-	public void setSchool(String school) {
+	public void setSchool(School school) {
 		this.school = school;
 	}
 }
