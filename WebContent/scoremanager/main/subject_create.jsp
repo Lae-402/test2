@@ -10,16 +10,16 @@
 	<c:param name="content">
 		<section>
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報登録</h2>
-			<form action="createSubject" methood="post">
+			<form action="SubjectCreateExecute.action" methood="post">
 				<div style="position: relative; margin-bottom: 20px;">
 					<label for="code" style="display: block;">科目コード</label>
-					 <input type="text" id="name" name="name" placeholder = "科目コードを入力してください" value="${name}" maxlength="20"
+					 <input type="text" name="subjectcd" placeholder = "科目コードを入力してください" value="${subjectcd}" maxlength="20"
 						required />
 
 				</div>
 				<div style="position: relative; margin-bottom: 20px;">
 					<label for="code" style="display: block;">科目名</label>
-					<input type="text" id="name" name="name" placeholder = "科目名を入力してください" value="${name}" maxlength="20"
+					<input type="text" name="subjectname" placeholder = "科目名を入力してください" value="${subjectname}" maxlength="20"
 						required />
 				</div>
 				<div class="col-2 text-center">
