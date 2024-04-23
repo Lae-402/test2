@@ -25,6 +25,7 @@ public class SubjectListAction  extends Action {
     	// 科目Dao
     	SubjectDao sDao = new SubjectDao();
 
+    	// 全件取得
 		subjects = sDao.filter( teacher.getSchool() );
 
     	// レスポンス値をセット
