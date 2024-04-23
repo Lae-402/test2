@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Subject;
 import dao.SubjectDao;
 import tool.Action;
 
@@ -57,7 +58,7 @@ public class SubjectCreateExecuteAction  extends Action {
     	System.out.println( "sutudentにセット" );
 
     	subject.setName(subjectname);
-    	subject.setClassNum(subjectcd);
+    	subject.setCd(subjectcd);
 
     	if ( sDao.get(subjectcd) != null ) {
 
