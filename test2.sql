@@ -36,6 +36,7 @@ create table SUBJECT (
     SCHOOL_CD char(3),
     CD char(3),
     NAME varchar(20) default null,
+    DELETED boolean default false,
     primary key (SCHOOL_CD, CD),
     foreign key (SCHOOL_CD) references SCHOOL(CD)
 );
@@ -57,6 +58,7 @@ create table TEST (
     NO integer,
     POINT integer default null,
     CLASS_NUM varchar(5) default null,
+    DELETED boolean default false,
     primary key (STUDENT_NO, SUBJECT_CD, SCHOOL_CD, NO),
     foreign key (STUDENT_NO) references STUDENT(NO),
     foreign key (SUBJECT_CD, SCHOOL_CD) references SUBJECT(CD, SCHOOL_CD),
