@@ -16,8 +16,6 @@ public class SubjectCreateExecuteAction  extends Action {
 	@Override
     public void execute (HttpServletRequest request, HttpServletResponse response) throws Exception{
 
-
-
 		/*
 		HttpSession session = request.getSession();
     	Teacher teacher = (Teacher)session.getAttribute("user");
@@ -31,9 +29,8 @@ public class SubjectCreateExecuteAction  extends Action {
     	String no = "";   */             // 入力値：学生番号
     	String subjectcd = "";              // 入力値：科目コード
     	String subjectname = "";         // 入力値：科目名
-/*    	boolean isAttend = true;     // 在学フラグ：一律でtrue
-    	boolean done = false;*/
-
+ /* 	boolean isAttend = true;     // 在学フラグ：一律でtrue
+*/    	boolean done = false;
     	// エラーメッセージ
     	Map<String, String> errors = new HashMap<>();
 
@@ -52,30 +49,31 @@ public class SubjectCreateExecuteAction  extends Action {
 
     	/*えらー
     	科目コード文字数エラー*/
-    	// 条件：入学年度の指定が無い
-    	if ( subjectcd == 0 ) {
-    		request.setAttribute("no", no);
-    		request.setAttribute("name", subjectcd);
-    		request.setAttribute("class_num", classNum);
-    		errors.put( "error1", "入学年度を指定してください" );
+    	// 条件：科目コード3文字
+    	int num =subjectcd.length();
+    	if ( num != 3 ) {
+    		request.setAttribute("no", subjectcd);
+    		request.setAttribute("name", subjectname);
+    	/*	request.setAttribute("class_num", classNum);*/
+    		errors.put( "error1", "科目コードは3文字で入力してください" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("StudentCreate.action").forward(request, response);
     	}
 
     	System.out.println( "sutudentにセット" );
-    	student.setEntYear(entYear);
-    	student.setNo(no);
-    	student.setName(subjectcd);
-    	student.setClassNum(classNum);
-    	student.setAttend(isAttend);
-    	student.setSchool(school);
+   /* 	student.setEntYear(entYear);
+    	student.setNo(no);*/
+    	student.setName(subjectname);
+    	student.setClassNum(subjectcd);
+    /*	student.setAttend(isAttend);
+    	student.setSchool(school);*/
 
-    	if ( sDao.get(no) != null ) {
-    		request.setAttribute("ent_year", entYear);
-    		request.setAttribute("no", no);
-    		request.setAttribute("name",subjectcd);
-    		request.setAttribute("class_num", classNum);
-    		errors.put( "error2", "学生番号が重複しています" );
+    	if ( sDao.get(subjectcd) != null ) {
+/*    		request.setAttribute("ent_year", entYear);
+    		request.setAttribute("no", no);*/
+    		request.setAttribute("subjected",subjectcd);
+    		request.setAttribute("subjectname", subjectname);
+    		errors.put( "error2", "科目コードが重複しています" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("StudentCreate.action").forward(request, response);
     	}
