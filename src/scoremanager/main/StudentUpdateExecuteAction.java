@@ -22,7 +22,6 @@ public class StudentUpdateExecuteAction  extends Action {
 
 		// 学生Dao
     	StudentDao sDao = new StudentDao();
-
 		Student student = new Student();
 
     	int entYear = 0;       // 入力値：入学年度

@@ -29,9 +29,8 @@ public class SubjectListAction  extends Action {
 		subjects = sDao.filter( teacher.getSchool() );
 
     	// レスポンス値をセット
-    	request.setAttribute( "subject_list", subjects );
+    	request.setAttribute( "subjects", subjects );
 
-    	// ７
     	// JSPへフォワード
     	request.getRequestDispatcher("subject_list.jsp").forward(request, response);
 
