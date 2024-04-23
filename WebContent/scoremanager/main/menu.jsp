@@ -31,6 +31,5 @@
 				<p><a href="SubjectList.action" style="font-size: 170%;">科目管理</a></p>
 			</div>
 		</div>
-		<a href="StudentList.action">学生管理</a>
 	</c:param>
 </c:import>
