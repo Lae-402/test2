@@ -22,5 +22,6 @@
 			style="height: 10rem; background-color: #bbd;">
 			<a href="StudentList.action">（科目管理）</a>
 		</div>
+		<a href="StudentList.action">学生管理</a>
 	</c:param>
 </c:import>
