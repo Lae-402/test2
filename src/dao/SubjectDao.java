@@ -14,7 +14,7 @@ public class SubjectDao extends Dao {
 
 	// get
 	public Subject get( String cd, School school ) throws Exception {
-		// 学生インスタンスを初期化
+		// 科目インスタンスを初期化
 		Subject subject = new Subject();
 		// データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -24,7 +24,7 @@ public class SubjectDao extends Dao {
 		try {
 			// プリペアードステートメントにSQL文をセット
 			statement = connection.prepareStatement("select * from subject where school_cd=? and cd=? and deleted=false");
-			// プリペアードステートメントに学生番号をバインド
+			// プリペアードステートメントにバインド
 			statement.setString(1, school.getCd());
 			statement.setString(2, cd);
 			// プリペアードステートメントを実行
@@ -32,12 +32,12 @@ public class SubjectDao extends Dao {
 
 			if (rSet.next()) {
 				// リザルトセットが存在する場合
-				// 学生インスタンスに検索結果をセット
+				// 科目インスタンスに検索結果をセット
 				subject.setCd(rSet.getString("cd"));
 				subject.setName(rSet.getString("name"));
 			} else {
 				// リザルトセットが存在しない場合
-				// 学生インスタンスにnullをセット
+				// 科目インスタンスにnullをセット
 				subject = null;
 			}
 		} catch (Exception e) {
@@ -74,7 +74,6 @@ public class SubjectDao extends Dao {
 		PreparedStatement statement = null;
 		// リザルトセット
 		ResultSet rSet = null;
-
 
 		try {
 			// プリペアードステートメントにSQL文をセット
@@ -126,7 +125,7 @@ public class SubjectDao extends Dao {
 			// データベースから学生を取得
 			Subject old = get( subject.getCd(), subject.getSchool() );
 			if (old == null) {
-				// 学生が存在しなかった場合
+				// 科目が存在しなかった場合
 				// プリペアードステートメンにINSERT文をセット
 				statement = connection.prepareStatement(
 						"insert into subject(school_cd, cd, name, deleted) values(?, ?, ?, false)");
@@ -135,7 +134,7 @@ public class SubjectDao extends Dao {
 				statement.setString(2, subject.getCd());
 				statement.setString(3, subject.getName());
 			} else {
-				// 学生が存在した場合
+				// 科目が存在した場合
 				// プリペアードステートメントにUPDATE文をセット
 				statement = connection.prepareStatement(
 						"update subject set name=? where school_cd=? and cd=?");
