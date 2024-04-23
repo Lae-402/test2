@@ -19,7 +19,8 @@ public class SubjectListAction  extends Action {
     	HttpSession session = request.getSession();
     	Teacher teacher = (Teacher)session.getAttribute("user");
 
-    	List<Subject> subjects = null; // 科目リスト
+    	// 科目リスト
+    	List<Subject> subjects = null;
 
     	// 科目Dao
     	SubjectDao sDao = new SubjectDao();
