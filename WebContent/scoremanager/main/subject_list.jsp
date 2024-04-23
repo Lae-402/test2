@@ -8,7 +8,7 @@
         <section class="me-4">
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">科目管理</h2>
             <div class="my-2 text-end px-4">
-                <a href="StudentCreate.action">新規登録</a>
+                <a href="SubjectCreate.action">新規登録</a>
             </div>
             <form action="SubjectList.action" method="get">
                     <div class="mt-2 text-warning">${errors.get("f1")}</div>
@@ -29,7 +29,7 @@
                             <td>${subject.name}</td>
                             <td class="text-center"></td>
                             <td><a href="SubjectUpdate.action?name=${subject.name}">変更</a></td>
-                            <td><a href="SubjectDelite.action?name=${subject.name}">削除</a></td>
+                            <td><a href="SubjectDelete.action?name=${subject.name}">削除</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
