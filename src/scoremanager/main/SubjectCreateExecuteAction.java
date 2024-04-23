@@ -70,7 +70,7 @@ public class SubjectCreateExecuteAction  extends Action {
     	}
 
     	System.out.println( "結果格納" );
-    	done = sDao.save(student);
+    	done = sDao.save(subject);
 
     	if (done) {
 			// JSPへフォワード
