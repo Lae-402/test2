@@ -10,7 +10,7 @@ import java.util.List;
 import bean.School;
 import bean.Subject;
 
-public class SubjectDao {
+public class SubjectDao extends Dao {
 
 	// get
 	public Subject get( String cd, School school ) throws Exception {
@@ -30,13 +30,9 @@ public class SubjectDao {
 			// プリペアードステートメントを実行
 			ResultSet rSet = statement.executeQuery();
 
-			// 学校Daoを初期化
-			SchoolDao schoolDao = new SchoolDao();
-
 			if (rSet.next()) {
 				// リザルトセットが存在する場合
 				// 学生インスタンスに検索結果をセット
-				subject.setSchool(rSet.getString("school_cd"));
 				subject.setCd(rSet.getString("cd"));
 				subject.setName(rSet.getString("name"));
 			} else {
@@ -133,22 +129,20 @@ public class SubjectDao {
 				// 学生が存在しなかった場合
 				// プリペアードステートメンにINSERT文をセット
 				statement = connection.prepareStatement(
-						"insert into subject(school_cd, cd, name, deleted) values(?, ?, ?, ?, false)");
+						"insert into subject(school_cd, cd, name, deleted) values(?, ?, ?, false)");
 				// プリペアードステートメントに値をバインド
-				statement.setString(1, subject.getCd());
-				statement.setString(2, subject.getName());
-				statement.setString(3, subject.getSchool());
+				statement.setString(1, String.valueOf(subject.getSchool()));
+				statement.setString(2, subject.getCd());
+				statement.setString(3, subject.getName());
 			} else {
 				// 学生が存在した場合
 				// プリペアードステートメントにUPDATE文をセット
-				statement = connection
-						.prepareStatement("update subject set name=?, ent_year=?, class_num=?, is_attend=? where school_cd=? and cd=?");
+				statement = connection.prepareStatement(
+						"update subject set name=? where school_cd=? and cd=?");
 				// プリペアードステートメントに値をバインド
 				statement.setString(1, subject.getName());
-				statement.setInt(2, subject);
-				statement.setString(3, subject.getClassNum());
-				statement.setBoolean(4, subject.isAttend());
-				statement.setString(5, subject.getNo());
+				statement.setString(2, String.valueOf(subject.getSchool()));
+				statement.setString(3, subject.getCd());
 			}
 
 			// プリペアードステートメントを実行
@@ -185,7 +179,7 @@ public class SubjectDao {
 	}
 
 	// delete
-	public boolean graduate(int entYear, String schoolCd) throws Exception {
+	public boolean delete(Subject subject) throws Exception {
 		// コネクションを確立
 		Connection connection = getConnection();
 		// プリペアードステートメント
@@ -194,17 +188,13 @@ public class SubjectDao {
 		int count = 0;
 
 		try {
-
-			// 学生が存在した場合
-			// プリペアードステートメントにUPDATE文をセット
-			statement = connection
-					.prepareStatement("update subject set is_attend=false where ent_year=? and school_cd=?");
-			// プリペアードステートメントに値をバインド
-			statement.setInt(1, entYear);
-			statement.setString(2, schoolCd);
+			// プリペアードステートメントにDELETE文をセット
+			statement = connection.prepareStatement("update subject set deleted=true where school_cd=? and cd=?");
+			// プリペアードステートメントにバインド
+			statement.setString(1, String.valueOf(subject.getSchool()));
+			statement.setString(2, subject.getCd());
 			// プリペアードステートメントを実行
 			count = statement.executeUpdate();
-
 		} catch (Exception e) {
 			throw e;
 		} finally {
