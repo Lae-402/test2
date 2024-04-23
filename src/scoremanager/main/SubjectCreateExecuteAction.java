@@ -5,17 +5,24 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.School;
 import bean.Subject;
+import bean.Teacher;
 import dao.SubjectDao;
 import tool.Action;
 
 public class SubjectCreateExecuteAction  extends Action {
 
+
 	// オーバーライド
 	@Override
     public void execute (HttpServletRequest request, HttpServletResponse response) throws Exception{
 
+		HttpSession session = request.getSession();
+    	Teacher teacher = (Teacher)session.getAttribute("user");
+    	School school = teacher.getSchool();
 
 
 		// 学生Dao
@@ -60,7 +67,7 @@ public class SubjectCreateExecuteAction  extends Action {
     	subject.setName(subjectname);
     	subject.setCd(subjectcd);
 
-    	if ( sDao.get(subjectcd) != null ) {
+    	if ( sDao.get(subjectcd,school) != null ) {
 
     		request.setAttribute("subjected",subjectcd);
     		request.setAttribute("subjectname", subjectname);
