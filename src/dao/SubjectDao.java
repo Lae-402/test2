@@ -68,12 +68,6 @@ public class SubjectDao {
 		return subject;
 	}
 
-
-	/**
-	 * baseSql:String 共通SQL文 プライベート
-	 */
-	private String baseSql = "select * from subject where school_cd=? ";
-
 	// filter
 	public List<Subject> filter(School school) throws Exception {
 		// リストを初期化
@@ -84,13 +78,11 @@ public class SubjectDao {
 		PreparedStatement statement = null;
 		// リザルトセット
 		ResultSet rSet = null;
-		// SQL文の条件
-		String order = " order by no asc";
 
 
 		try {
 			// プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql + order);
+			statement = connection.prepareStatement("select * from subject where school_cd=? order by no asc");
 			// プリペアードステートメントに学校コードをバインド
 			statement.setString(1, school.getCd());
 			// プリペアードステートメントを実行
@@ -122,7 +114,6 @@ public class SubjectDao {
 				}
 			}
 		}
-
 		return list;
 	}
 
@@ -151,10 +142,10 @@ public class SubjectDao {
 				// 学生が存在した場合
 				// プリペアードステートメントにUPDATE文をセット
 				statement = connection
-						.prepareStatement("update subject set name=?, ent_year=?, class_num=?, is_attend=? where no=?");
+						.prepareStatement("update subject set name=?, ent_year=?, class_num=?, is_attend=? where school_cd=? and cd=?");
 				// プリペアードステートメントに値をバインド
 				statement.setString(1, subject.getName());
-				statement.setInt(2, subject.getEntYear());
+				statement.setInt(2, subject);
 				statement.setString(3, subject.getClassNum());
 				statement.setBoolean(4, subject.isAttend());
 				statement.setString(5, subject.getNo());
