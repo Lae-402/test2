@@ -53,7 +53,7 @@ public class SubjectCreateExecuteAction  extends Action {
     	科目コード文字数エラー*/
     	// 条件：科目コード3文字
     	int num =subjectcd.length();
-    	if ( num < 3   ) {
+    	if ( num != 3 ) {
     		request.setAttribute("subjectcd", subjectcd);
     		request.setAttribute("subjectname", subjectname);
 
@@ -66,8 +66,9 @@ public class SubjectCreateExecuteAction  extends Action {
 
     	subject.setName(subjectname);
     	subject.setCd(subjectcd);
+    	subject.setSchool( school );
 
-    	if ( sDao.get(subjectcd, school) != null ) {
+    	if ( sDao.get(subjectcd,school) != null ) {
 
     		request.setAttribute("subjected",subjectcd);
     		request.setAttribute("subjectname", subjectname);
