@@ -19,11 +19,11 @@ public class SubjectDeleteAction  extends Action {
     	StudentDao sDao = new StudentDao();
 
     	// 初期化
-    	String no = "";
+    	String cd = "";
     	List<Student> student = new ArrayList<Student>(1);
 
     	// 選択した学生の学生情報をstudentに
-    	no = request.getParameter("no");
+    	cd = request.getParameter("cd");
     	student.add(sDao.get(no));
 
     	request.setAttribute( "student",student );

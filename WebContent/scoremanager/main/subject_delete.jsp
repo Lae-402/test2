@@ -21,9 +21,10 @@
 <html>
 <body>
     <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報削除</h2>
-    <p id="confirmMessage">「${name}」を排除してもよろしいですか？</p>
+    <p id="confirmMessage">「${name}(${cd})」を削除してもよろしいですか？</p>
     <form action="DeleteSubject.action" method="post">
-        <input type="submit" class="delete-button" value="削除" />
+    	<a href="StudentDeleteExecute.action?cd=${cd}></a>
+        <input type="submit" name="${cd}" class="delete-button" value="削除" />
     </form>
     <a href="SubjectList.action">戻る</a>
 </body>
