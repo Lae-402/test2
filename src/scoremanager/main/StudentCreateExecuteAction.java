@@ -65,6 +65,7 @@ public class StudentCreateExecuteAction  extends Action {
     	student.setSchool(school);
 
     	if ( sDao.get(no) != null ) {
+    		System.out.print("error2");
     		request.setAttribute("ent_year", entYear);
     		request.setAttribute("no", no);
     		request.setAttribute("name", name);
@@ -74,6 +75,8 @@ public class StudentCreateExecuteAction  extends Action {
     		request.getRequestDispatcher("StudentCreate.action").forward(request, response);
     	}
 
+    	
+    	
     	System.out.println( "結果格納" );
     	done = sDao.save(student);
 
