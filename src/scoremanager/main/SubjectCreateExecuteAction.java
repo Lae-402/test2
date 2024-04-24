@@ -74,7 +74,7 @@ public class SubjectCreateExecuteAction  extends Action {
     		request.setAttribute("subjectname", subjectname);
     		errors.put( "error2", "科目コードが重複しています" );
     		request.setAttribute( "errors", errors );
-    		request.getRequestDispatcher("StudentCreate.action").forward(request, response);
+    		request.getRequestDispatcher("SubjectCreate.action").forward(request, response);
     	}
 
     	System.out.println( "結果格納" );
