@@ -1,13 +1,13 @@
 package scoremanager.main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import bean.Student;
-import dao.StudentDao;
+import bean.School;
+import bean.Subject;
+import bean.Teacher;
+import dao.SubjectDao;
 import tool.Action;
 
 public class SubjectDeleteAction  extends Action {
@@ -15,20 +15,26 @@ public class SubjectDeleteAction  extends Action {
 	// オーバーライド
 	@Override
     public void execute (HttpServletRequest request, HttpServletResponse response) throws Exception{
-
-    	StudentDao sDao = new StudentDao();
+    	HttpSession session = request.getSession();
+    	Teacher teacher = (Teacher)session.getAttribute("user");
+    	School school = teacher.getSchool();
+    	SubjectDao sDao = new SubjectDao();
 
     	// 初期化
     	String cd = "";
-    	List<Student> student = new ArrayList<Student>(1);
 
-    	// 選択した学生の学生情報をstudentに
     	cd = request.getParameter("cd");
-    	student.add(sDao.get(no));
 
-    	request.setAttribute( "student",student );
+    	System.out.println("cd :  " + cd);
+    	System.out.println("school :  " + school);
+    	Subject subject = sDao.get(cd, school);
 
-    	request.getRequestDispatcher("student_delete.jsp").forward(request, response);
+    	System.out.println(subject);
+
+    	request.setAttribute( "cd", cd );
+    	request.setAttribute( "name", subject.getName() );
+
+    	request.getRequestDispatcher("subject_delete.jsp").forward(request, response);
 
     }
 }
