@@ -134,7 +134,7 @@ public class SubjectDao extends Dao {
 				statement = connection.prepareStatement(
 						"insert into subject(school_cd, cd, name, deleted) values(?, ?, ?, false)");
 				// プリペアードステートメントに値をバインド
-				statement.setString(1, String.valueOf(subject.getSchool()));
+				statement.setString(1, String.valueOf(subject.getSchool().getCd()));
 				statement.setString(2, subject.getCd());
 				statement.setString(3, subject.getName());
 			} else {
@@ -144,7 +144,7 @@ public class SubjectDao extends Dao {
 						"update subject set name=? where school_cd=? and cd=?");
 				// プリペアードステートメントに値をバインド
 				statement.setString(1, subject.getName());
-				statement.setString(2, String.valueOf(subject.getSchool()));
+				statement.setString(2, String.valueOf(subject.getSchool().getCd()));
 				statement.setString(3, subject.getCd());
 			}
 
