@@ -5,12 +5,16 @@
 <c:param name="scripts">
     <style>
         .delete-button {
+        	width: 60px;
+        	height: 30px;
+            padding: 0;
             background-color: red;
-            color: white;
-            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+			text-align: center;
+			display: table-cell;
+			vertical-align: middle;
         }
         .delete-button:hover {
             background-color: darkred;
@@ -22,10 +26,10 @@
 <body>
     <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報削除</h2>
     <p id="confirmMessage">「${name}(${cd})」を削除してもよろしいですか？</p>
-    <form action="DeleteSubject.action" method="post">
-    	<a href="StudentDeleteExecute.action?cd=${cd}></a>
-        <input type="submit" name="${cd}" class="delete-button" value="削除" />
-    </form>
+    	<div class="delete-button" >
+    		<a href="SubjectDeleteExecute.action?cd=${cd}"
+    		 style="text-decoration: none; color: white;">削除</a>
+    	</div>
     <a href="SubjectList.action">戻る</a>
 </body>
 </html>
