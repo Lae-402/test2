@@ -125,6 +125,8 @@ public class SubjectDao extends Dao {
 
 		try {
 			// データベースから学生を取得
+			System.out.println( subject.getCd() );
+			System.out.println( subject.getSchool() );
 			Subject old = get( subject.getCd(), subject.getSchool() );
 			if (old == null) {
 				// 科目が存在しなかった場合

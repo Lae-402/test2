@@ -41,9 +41,9 @@
 					</label>
 				</div>
 
-				<div class="col-2 tect-center">
-					<button class="btn btn-secondary" >変更</button>
-				</div>
+				<div class="col-2 text-center">
+				<button class="btn btn-secondary" style="background-color: #007bff; border-radius: 15px;">変更</button>
+			</div>
 
 				<div class="mt-2 text-warning">${errors.get("f1")}</div>
 			</c:forEach>
