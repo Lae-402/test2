@@ -8,7 +8,6 @@
 	<div style="display: flex; justify-content: center;">
 		<div
 		 style="border: 1px solid rgba(33,37,41, 0.2); padding: 0; width: 70%;">
-
 			<h2
 			 style="padding: 10px 0; background: rgba(33,37,41, 0.07); text-align: center;">ログイン</h2>
 			<form action="LoginExecute.action" method="post">
