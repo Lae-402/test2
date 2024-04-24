@@ -27,7 +27,7 @@
 						style="background-color: #007bff; border-radius: 10px;">登録</button>
 				</div>
 			</form>
-			<a href="SubjectCreate.action">戻る</a>
+			<a href="SubjectList.action">戻る</a>
 		</section>
 	</c:param>
 </c:import>
