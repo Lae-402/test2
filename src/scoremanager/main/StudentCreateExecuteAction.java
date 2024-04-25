@@ -54,17 +54,9 @@ public class StudentCreateExecuteAction  extends Action {
     		errors.put( "error1", "入学年度を指定してください" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("StudentCreate.action").forward(request, response);
-    	}
-
-    	System.out.println( "sutudentにセット" );
-    	student.setEntYear(entYear);
-    	student.setNo(no);
-    	student.setName(name);
-    	student.setClassNum(classNum);
-    	student.setAttend(isAttend);
-    	student.setSchool(school);
-
-    	if ( sDao.get(no) != null ) {
+    	// 条件：入力された学生番号の学生が既存
+    	} else if ( sDao.get(no) != null ) {
+    		System.out.print("error2");
     		request.setAttribute("ent_year", entYear);
     		request.setAttribute("no", no);
     		request.setAttribute("name", name);
@@ -72,10 +64,18 @@ public class StudentCreateExecuteAction  extends Action {
     		errors.put( "error2", "学生番号が重複しています" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("StudentCreate.action").forward(request, response);
-    	}
-
+    	// 条件：入力エラーなし
+    	} else {
+    	System.out.println( "sutudentにセット" );
+    	student.setEntYear(entYear);
+    	student.setNo(no);
+    	student.setName(name);
+    	student.setClassNum(classNum);
+    	student.setAttend(isAttend);
+    	student.setSchool(school);
     	System.out.println( "結果格納" );
     	done = sDao.save(student);
+    	}
 
     	if (done) {
 			// JSPへフォワード

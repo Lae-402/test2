@@ -47,43 +47,41 @@ public class SubjectCreateExecuteAction  extends Action {
     	subjectname = request.getParameter("subjectname");
 
 
-
-
     	/*えらー
     	科目コード文字数エラー*/
     	// 条件：科目コード3文字
     	int num =subjectcd.length();
     	if ( num != 3 ) {
+     		System.out.print("error");
     		request.setAttribute("subjectcd", subjectcd);
     		request.setAttribute("subjectname", subjectname);
-
     		errors.put( "error1", "科目コードは3文字で入力してください" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("SubjectCreate.action").forward(request, response);
-    	}
-
-    	System.out.println( "sutudentにセット" );
-
-    	subject.setName(subjectname);
-    	subject.setCd(subjectcd);
-    	subject.setSchool( school );
-
-    	if ( sDao.get(subjectcd,school) != null ) {
-
+    	}else if  ( sDao.get(subjectcd,school) != null ) {
+    		System.out.print("error2");
     		request.setAttribute("subjected",subjectcd);
     		request.setAttribute("subjectname", subjectname);
     		errors.put( "error2", "科目コードが重複しています" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("SubjectCreate.action").forward(request, response);
-    	}
+    	}else{
+    		System.out.println( "sutudentにセット" );
 
-    	System.out.println( "結果格納" );
-    	done = sDao.save(subject);
+        	subject.setName(subjectname);
+        	subject.setCd(subjectcd);
+        	subject.setSchool( school );
+
+        	System.out.println( "結果格納" );
+        	done = sDao.save(subject);
+
+
+    	}
 
     	if (done) {
 			// JSPへフォワード
 			System.out.println( "create_doneにフォワード" );
-			request.getRequestDispatcher("student_create_done.jsp").forward(request, response);
+			request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);
     	}
     }
 }
