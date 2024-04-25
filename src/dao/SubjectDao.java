@@ -27,8 +27,7 @@ public class SubjectDao extends Dao {
 			statement = connection.prepareStatement("select * from subject where school_cd=? and cd=? and deleted=false");
 			// プリペアードステートメントにバインド
 			System.out.println("school_cd :  " + school.getCd());
-			System.out.println("       cd :  " + cd);
-
+			System.out.println("            cd :  " + cd);
 			statement.setString(1, school.getCd());
 			statement.setString(2, cd);
 			// プリペアードステートメントを実行
