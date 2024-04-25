@@ -41,13 +41,13 @@
 					</c:forEach	>
 				</select>
 			</div>
+			<div class="mt-2 text-warning">${errors.get("f1")}</div>
 			<div class="col-2 tect-center">
 				<button class="btn btn-secondary" >登録して終了</button>
 			</div>
-			<div class="mt-2 text-warning">${errors.get("f1")}</div>
 		</div>
 	</form>
-	<a href="StudentList.action">学生管理</a>
+	<a href="StudentList.action">戻る</a>
 </section>
 </c:param>
 </c:import>
