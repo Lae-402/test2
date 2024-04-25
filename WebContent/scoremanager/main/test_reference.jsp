@@ -2,14 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/common/base.jsp">
-
 	<c:param name="title">得点管理システム</c:param>
-
 	<c:param name="content">
+
 		<section class="me-4">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
-
 			<form action="SubjectList.action" method="get">
+				<!-- 科目情報 -->
 				<div
 					class="d-flex flex-row justify-content-between border mx-3 mb-3 py-2 align-items-center rounded"
 					id="filter">
@@ -52,19 +51,26 @@
 					<div class="flex-fill mx-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
 					</div>
-
-					<div class="flex-fill mx-2">
-						<label class="form-label"><strong>学生情報</strong></label>
-						<div style="position: relative; margin-bottom: 20px;">
-							<label for="name" style="display: block;">科目名</label> <input
-								type="text" id="name" name="name" value="${name}" maxlength="20"
-								required />
-						</div>
-
-					</div>
 				</div>
 			</form>
 
+			<!-- 学生情報 -->
+			<div
+				class="d-flex flex-row justify-content-between border mx-3 mb-3 py-2 align-items-center rounded"
+				id="student-info">
+				<div class="flex-fill mx-2">
+					<label class="form-label"><strong>学生情報</strong></label>
+				</div>
+				<div class="flex-fill mx-2">
+					<div style="position: relative; margin-bottom: 20px; left: -180px">
+						<label for="name" style="display: block;">学生番号</label> <input
+							type="text" id="name" name="name" value="${name}"
+							placeholder="学生番号を入力してください" maxlength="20" required />
+						<button class="btn btn-secondary" id="filter-button">検索</button>
+					</div>
+
+				</div>
+			</div>
 		</section>
 	</c:param>
 </c:import>

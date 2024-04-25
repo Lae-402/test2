@@ -58,6 +58,7 @@
         </form>
 
         <!-- 成績一覧テーブル -->
+        <div>科目:${subjectname}</div>
         <table class="table">
             <thead>
                 <tr>
