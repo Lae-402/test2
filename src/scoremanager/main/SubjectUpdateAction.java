@@ -31,7 +31,6 @@ public class SubjectUpdateAction extends Action {
         // 初期化
         String cd = ""; // 選択された学生の学籍番号
         List<Subject> subject = new ArrayList<>(); // 学生情報を格納するリスト
-
         // リクエストパラメータから学籍番号を取得し、該当する学生情報をリストに追加
         cd = request.getParameter("cd");
         subject.add(sDao.get(cd,school)); // 科目番号を元に学生情報を取得し、リストに追加

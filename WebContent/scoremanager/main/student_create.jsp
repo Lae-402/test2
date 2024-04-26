@@ -41,8 +41,9 @@
 					</c:forEach	>
 				</select>
 			</div>
+
 			<div class="mt-2 text-warning">${errors.get("f1")}</div>
-			<div class="col-2 tect-center">
+			<div class="col-2 text-center">
 				<button class="btn btn-secondary" >登録して終了</button>
 			</div>
 		</div>
