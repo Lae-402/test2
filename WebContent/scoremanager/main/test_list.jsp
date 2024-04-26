@@ -46,6 +46,7 @@
 							</c:forEach>
 						</select>
 					</div>
+
 					<!-- 回数 -->
 					<div class="col-3">
 						<label class="form-label" for="subject-f4-select">回数</label> <select
@@ -57,48 +58,11 @@
 							</c:forEach>
 						</select>
 					</div>
+					<!-- 検索ボタン -->
+					<div class="col-3">
+						<button class="btn btn-secondary" id="filter-button">検索</button>
+					</div>
 				</div>
 			</form>
-
-			<!-- 成績一覧テーブル -->
-			<div>科目:${subjectname}</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">入学年度</th>
-						<th scope="col">クラス</th>
-						<th scope="col">学生番号</th>
-						<th scope="col">氏名</th>
-						<th scope="col">点数</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- 成績情報の行を動的に生成 -->
-					<c:forEach var="student" items="${students}">
-						<tr>
-							<th scope="row">${student.entYear}</th>
-							<td>${student.classNum}</td>
-							<td>${student.no}</td>
-							<td>${student.name}</td>
-							<td><input type="text" class="form-control"
-								name="point_${student.studentNumber}" value="${student.score}"
-								placeholder="点数を入力" oninput="validateScore(this)">
-								<div class="validation-message"
-									style="display: none; color: yellow;">0~100の間隔で入力してください</div></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-
-			<!-- 登録して終了ボタン -->
-			<div class="text-left">
-				<button class="btn btn-secondary">登録して終了</button>
-				<div class="col-2 tect-center">
-					<button class="btn btn-secondary" id="filter-button">検索</button>
-				</div>
-				<div class="mt-2 text-warning">${errors.get("f1")}</div>
-			</div>
-
-		</section>
 	</c:param>
 </c:import>
