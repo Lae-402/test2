@@ -51,11 +51,15 @@ public class SubjectUpdateExecuteAction extends Action {
 
         if  ( sDao.get(cd,school) == null ) {
     		System.out.print("error2");
-    		request.setAttribute("subjected",cd);
-    		request.setAttribute("subjectname", name);
+    		request.setAttribute("cd",cd);
+    		request.setAttribute("name", name);
     		errors.put( "error2", "科目が存在していません" );
+
+    		System.out.print("科目が存在していません");
+
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("SubjectUpdate.action").forward(request, response);
+
     	}else{        // 新しい学生オブジェクトを作成し、入力値をセット
             Subject subject = new Subject();
             System.out.print("test4");
@@ -69,19 +73,7 @@ public class SubjectUpdateExecuteAction extends Action {
 }
 
 
-/*
 
-        // 新しい学生オブジェクトを作成し、入力値をセット
-        Subject subject = new Subject();
-        System.out.print("test4");
-        subject.setName(name);//科目名をセット
-        subject.setCd(cd);//科目番号をセット
-
-        subject.setSchool(school); // 学校情報を設定
-
-        // 学生情報を更新し、結果を取得
-        done = sDao.save(subject); // 学生情報をデータベースに保存
-*/
         // 更新が成功した場合は、更新完了画面にフォワード
         if (done) {
             request.getRequestDispatcher("subject_update_done.jsp").forward(request, response);

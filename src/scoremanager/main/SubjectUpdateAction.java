@@ -29,16 +29,29 @@ public class SubjectUpdateAction extends Action {
 
 
         // 初期化
-        String cd = ""; // 選択された学生の学籍番号
+        String cd = ""; // 選択された学生の学籍番号(なかった場合の収納)
+        String name = ""; // 入力した科目名(リクエスト)(なかった場合の収納)
+
+
         List<Subject> subject = new ArrayList<>(); // 学生情報を格納するリスト
         // リクエストパラメータから学籍番号を取得し、該当する学生情報をリストに追加
         cd = request.getParameter("cd");
-        subject.add(sDao.get(cd,school)); // 科目番号を元に学生情報を取得し、リストに追加
+        name = request.getParameter("name");
+
+        System.out.print("updateaction"+cd);
+        //この状態だとリストに追加できずにデータが消える
+        subject.add(sDao.get(cd,school)); // 科目番号を元に科目情報を取得し、リストに追加
+
+
+
+        System.out.print("subject "+subject);
 
 
         // 学生情報とクラス一覧をリクエスト属性に設定
+        request.setAttribute("cd", cd);
+        request.setAttribute("name", name);
         request.setAttribute("subject", subject); // 学生情報をリクエスト属性に設定
-
+    	request.setAttribute( "error2", request.getAttribute("error2") );
 
         // 学生情報更新画面にフォワード
         request.getRequestDispatcher("subject_update.jsp").forward(request, response);
