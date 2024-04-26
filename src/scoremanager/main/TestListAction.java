@@ -13,29 +13,42 @@ import dao.SubjectDao;
 import tool.Action;
 
 public class TestListAction extends Action {
+
 	@Override
     public void execute (HttpServletRequest request, HttpServletResponse response) throws Exception{
-    	HttpSession session = request.getSession();
+		// ログインユーザの情報
+		HttpSession session = request.getSession();
     	Teacher teacher = (Teacher)session.getAttribute("user");
 
-    	// Dao初期化
+    	// 初期化===============================
+    	// Dao
     	ClassNumDao cNumDao = new ClassNumDao();
     	SubjectDao sDao = new SubjectDao();
-
-    	// 初期化
+    	// クラス一覧
     	List<String>classList = null;
+    	// 科目一覧
     	List<Subject> subjectList = null;
 
-    	// ログインユーザの所属学校の・・・
-    	// クラス一覧
+    	// ログインユーザの所属学校のクラス一覧／科目一覧
     	classList = cNumDao.filter( teacher.getSchool() );
-    	// 科目一覧
     	subjectList = sDao.filter( teacher.getSchool() );
 
-    	// フォワード
+    	// レスポンス値をセット=======================
     	request.setAttribute( "classList", classList );
     	request.setAttribute( "subjectList", subjectList );
+
+    	// フォワード===============================
     	request.getRequestDispatcher("test_list.jsp").forward(request, response);
+
+	}
+
+	// Who are you?
+	private void setTestListSubject (HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+	}
+
+	// Who are you? vol.2
+	private void setTestListStudent (HttpServletRequest request, HttpServletResponse response) throws Exception{
 
 	}
 }

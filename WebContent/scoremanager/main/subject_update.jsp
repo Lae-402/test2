@@ -4,30 +4,7 @@
 <c:import url="/common/base.jsp">
 	<c:param name="title">得点管理システム</c:param>
 	<c:param name="scripts">
-		<!-- 		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script>
-            $(document).ready(function(){
-                $('#updateSubjectForm').submit(function(event){
-                    event.preventDefault();
-                    var subjectCode = $('#code').val();
-                    $.ajax({
-                        url: 'checkSubjectExistence',
-                        type: 'GET',
-                        data: {code: subjectCode},
-                        success: function(data){
-                            if(data.exists){
-                                // 科目が存在する場合、フォームを通常通り送信
-                                $('#updateSubjectForm').unbind('submit').submit();
-                            }else{
-                                // 科目が存在しない場合、エラーメッセージを表示
-                                $('#errorMessage').text('科目が存在していません').css('color', 'yellow');
-                            }
-                        }
-                    });
-                });
-            });
-        </script> -->
+
 	</c:param>
 	<c:param name="content">
 		<html>
@@ -37,12 +14,13 @@
 		<div style="position: relative; margin-bottom: 20px;">
 			<c:forEach var="s" items="${subject}">
 				<label for="cd" style="display: block;">科目コード</label>
-				<input type="text" id="cd" name="cd" value="${s.cd}"
-					readonly="readonly" />
+				<input type="text" id="cd" name="cd" value="${cd}"readonly="readonly" />
+				<div class="mt-2 text-warning">${errors.get("error2")}</div>
 		</div>
+
 		<div style="position: relative; margin-bottom: 20px;">
 			<label for="name" style="display: block;">科目名</label> <input
-				type="text" id="name" name="name" value="${s.name}" maxlength="20"
+				type="text" id="name" name="name" value="${name}" maxlength="20"
 				required />
 		</div>
 		<div class="col-2 text-left">

@@ -52,21 +52,21 @@ public class SubjectCreateExecuteAction  extends Action {
     	// 条件：科目コード3文字
     	int num =subjectcd.length();
     	if ( num != 3 ) {
-     		System.out.print("error");
+
     		request.setAttribute("subjectcd", subjectcd);
     		request.setAttribute("subjectname", subjectname);
     		errors.put( "error1", "科目コードは3文字で入力してください" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("SubjectCreate.action").forward(request, response);
     	}else if  ( sDao.get(subjectcd,school) != null ) {
-    		System.out.print("error2");
-    		request.setAttribute("subjected",subjectcd);
+
+    		request.setAttribute("subjectcd",subjectcd);
     		request.setAttribute("subjectname", subjectname);
     		errors.put( "error2", "科目コードが重複しています" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("SubjectCreate.action").forward(request, response);
     	}else{
-    		System.out.println( "sutudentにセット" );
+
 
         	subject.setName(subjectname);
         	subject.setCd(subjectcd);

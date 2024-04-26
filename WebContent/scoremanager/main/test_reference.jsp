@@ -26,7 +26,7 @@
 								<option value="${code}" ${code == param.f1 ? 'selected' : ''}>${code}</option>
 							</c:forEach>
 						</select>
-					"WebContent/scoremanager/main/test_reference.jsp"</div>
+					</div>
 					<!-- クラス -->
 					<div class="flex-fill mx-2">
 						<label class="form-label" for="subject-f2-select">クラス</label> <select
