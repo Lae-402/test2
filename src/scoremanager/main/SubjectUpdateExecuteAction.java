@@ -55,14 +55,13 @@ public class SubjectUpdateExecuteAction extends Action {
     		request.setAttribute("name", name);
     		errors.put( "error2", "科目が存在していません" );
 
-    		System.out.print("科目が存在していません");
 
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("SubjectUpdate.action").forward(request, response);
 
     	}else{        // 新しい学生オブジェクトを作成し、入力値をセット
             Subject subject = new Subject();
-            System.out.print("test4");
+
             subject.setName(name);//科目名をセット
             subject.setCd(cd);//科目番号をセット
 

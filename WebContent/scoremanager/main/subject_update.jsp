@@ -14,9 +14,10 @@
 		<div style="position: relative; margin-bottom: 20px;">
 			<c:forEach var="s" items="${subject}">
 				<label for="cd" style="display: block;">科目コード</label>
-				<input type="text" id="cd" name="cd" value="${cd}"
-					readonly="readonly" />
+				<input type="text" id="cd" name="cd" value="${cd}"readonly="readonly" />
+				<div class="mt-2 text-warning">${errors.get("error2")}</div>
 		</div>
+
 		<div style="position: relative; margin-bottom: 20px;">
 			<label for="name" style="display: block;">科目名</label> <input
 				type="text" id="name" name="name" value="${name}" maxlength="20"

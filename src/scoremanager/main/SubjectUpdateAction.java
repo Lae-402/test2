@@ -43,10 +43,6 @@ public class SubjectUpdateAction extends Action {
         subject.add(sDao.get(cd,school)); // 科目番号を元に科目情報を取得し、リストに追加
 
 
-
-        System.out.print("subject "+subject);
-
-
         // 学生情報とクラス一覧をリクエスト属性に設定
         request.setAttribute("cd", cd);
         request.setAttribute("name", name);
