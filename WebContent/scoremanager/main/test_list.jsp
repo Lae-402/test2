@@ -64,5 +64,6 @@
 					</div>
 				</div>
 			</form>
+		</section>
 	</c:param>
 </c:import>
