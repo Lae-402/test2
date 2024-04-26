@@ -5,6 +5,7 @@
 	<c:param name="title">得点管理システム</c:param>
 	<c:param name="content">
 
+
 		<section class="me-4">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
 			<form action="SubjectList.action" method="get">
@@ -25,7 +26,7 @@
 								<option value="${code}" ${code == param.f1 ? 'selected' : ''}>${code}</option>
 							</c:forEach>
 						</select>
-					</div>
+					"WebContent/scoremanager/main/test_reference.jsp"</div>
 					<!-- クラス -->
 					<div class="flex-fill mx-2">
 						<label class="form-label" for="subject-f2-select">クラス</label> <select
