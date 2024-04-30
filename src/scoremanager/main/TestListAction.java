@@ -1,5 +1,7 @@
 package scoremanager.main;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,14 +30,27 @@ public class TestListAction extends Action {
     	List<String>classList = null;
     	// 科目一覧
     	List<Subject> subjectList = null;
+    	List<String> subjectNameList = new ArrayList<>();
+    	// 入学年度
+    	List<Integer> entYearSet = new ArrayList<>();
 
     	// ログインユーザの所属学校のクラス一覧／科目一覧
     	classList = cNumDao.filter( teacher.getSchool() );
     	subjectList = sDao.filter( teacher.getSchool() );
+    	for ( Subject s : subjectList ) {
+    		subjectNameList.add( s.getName() );
+    	}
+    	// 10年前から10年後まで年をリストに追加
+    	LocalDate todaysDate = LocalDate.now();
+    	int year = todaysDate.getYear();
+    	for ( int i = year - 10; i < year+11; i++ ) {
+    		entYearSet.add(i);
+    	}
 
     	// レスポンス値をセット=======================
+    	request.setAttribute( "ent_year_set", entYearSet );
     	request.setAttribute( "classList", classList );
-    	request.setAttribute( "subjectList", subjectList );
+    	request.setAttribute( "subjecList", subjectList );
 
     	// フォワード===============================
     	request.getRequestDispatcher("test_list.jsp").forward(request, response);

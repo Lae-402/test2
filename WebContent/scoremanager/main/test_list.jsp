@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/common/base.jsp">
 
-	<c:param name="title">得点管理システム</c:param>
+<c:param name="title">得点管理システム</c:param>
 
-	<c:param name="content">
-		<section class="me-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理（学生）</h2>
+<c:param name="content">
+	<section class="me-4">
+		<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
 
 		<div class="border" style="margin-bottom: 20px;">
 			<form action="TestListSubjectExecute.action" method="get">
@@ -41,9 +40,9 @@
 						<label class="form-label" for="subject-f3-select">科目</label> <select
 							class="form-select" id="subject-f3-select" name="subject_cd">
 							<option value="0">--------</option>
-							<c:forEach var="num" items="${subjecList}">
-								<option value="${num}"
-									<c:if test="${num==param.f3}">selected</c:if>>${num}</option>
+							<c:forEach var="subject" items="${subjecList}">
+								<option value="${subject.cd}"
+									<c:if test="${subject.cd==param.f3}">selected</c:if>>${subject.name}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -71,35 +70,9 @@
 				</div>
 			</form>
 		</div>
-			<c:choose>
-				<c:when test="${test_list.size()>0}">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>科目名</th>
-								<th>科目コード</th>
-								<th>回数</th>
-								<th>点数</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="student" items="${test_list}">
-								<tr>
-									<td>${student.subjectName}</td>
-									<td>${student.subjectCd}</td>
-									<td>${student.num}</td>
-									<td>${student.point}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</c:when>
-				<c:otherwise>
-					<p>学生情報が存在しませんでした</p>
-				</c:otherwise>
-			</c:choose>
+		<p
+		 style="color: #00dfff;">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
+	</section>
 
-		</section>
-
-	</c:param>
+</c:param>
 </c:import>

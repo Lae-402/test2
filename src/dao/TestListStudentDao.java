@@ -60,11 +60,12 @@ public class TestListStudentDao extends Dao {
 		// リザルトセット
 		ResultSet rSet = null;
 		// SQL文の条件
-		String condition = "AND test.student_no = '002' ";
+		String condition = "AND test.student_no = ? ";
 		// SQL文のソート
 		String order = "ORDER BY subject_cd ASC, no ASC";
 
 		try {
+			System.out.println("student  :" +student);
 			// プリペアードステートメントにSQL文をセット
 			statement = connection.prepareStatement(baseSql + condition + order);
 			// プリペアードステートメントに学校コードをバインド

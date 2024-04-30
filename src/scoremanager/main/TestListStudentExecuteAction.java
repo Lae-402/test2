@@ -54,10 +54,13 @@ public class TestListStudentExecuteAction extends Action {
     	// 検索==============================
     	// 学生検索
     	student = stDao.get(studentNo);
-		// 学生名を取得
-		studentName = stDao.get(studentNo).getName();
-		// 成績実行
-		testListStudent = tDao.filter( student );
+    	if ( student != null ) {
+			// 学生名を取得
+    		studentName = stDao.get(studentNo).getName();
+    		// 成績実行
+    		testListStudent = tDao.filter( student );
+    		System.out.println("student:  " + testListStudent);
+    	}
 
     	// フォワード用========================
     	// 10年前から10年後まで年をリストに追加
@@ -78,13 +81,15 @@ public class TestListStudentExecuteAction extends Action {
     	request.setAttribute( "test_list", testListStudent );
 
     	// フォワード==========================
-    	// 条件：全て選択されている
-    	if ( errors.size()==0 ) {
+    	// 条件：選択された学生が存在しない
+    	if ( studentName==null ) {
+    		System.out.println("分岐１");
+    		errors.put("no_stu", "学生が登録されていません");
     		request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
-    	// 条件：選択されていない項目がある
+    	// 条件：選択された学生が存在する
     	} else {
-    		request.getRequestDispatcher("test_list.jsp").forward(request, response);
-    	}
+    		System.out.println("分岐２");
+    		request.getRequestDispatcher("test_list_student.jsp").forward(request, response);    	}
 	}
 
 }

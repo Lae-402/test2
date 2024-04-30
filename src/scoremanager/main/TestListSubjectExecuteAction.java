@@ -62,6 +62,10 @@ public class TestListSubjectExecuteAction extends Action {
     		// 入学年度を数値型に変換
     		entYear = Integer.parseInt( entYearStr );
     		// 検索実行
+    		System.out.println( "☆" + entYear );
+    		System.out.println( "☆" + classNum );
+    		System.out.println( "☆" + sDao.get(subjectCd, teacher.getSchool()) );
+    		System.out.println( "☆" + teacher.getSchool() );
     		testListSubject = tDao.filter(entYear, classNum, sDao.get(subjectCd, teacher.getSchool()), teacher.getSchool());
     		// 科目名を取得
     		subjectName = sDao.get(subjectCd, teacher.getSchool()).getName();
@@ -89,6 +93,7 @@ public class TestListSubjectExecuteAction extends Action {
     	request.setAttribute( "test_list", testListSubject );
 
     	// フォワード==========================
+    	System.out.println( errors.size() );
     	// 条件：全て選択されている
     	if ( errors.size()==0 ) {
     		request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);

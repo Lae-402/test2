@@ -18,7 +18,7 @@ public class TestListSubjectDao extends Dao {
 	/**
 	 * baseSql:String 共通SQL文 プライベート
 	 */
-	private String baseSql = "SELECT student.ent_year, test.class_num, test.student_no, student.name, test.no, test.point"
+	private String baseSql = "SELECT student.ent_year, test.class_num, test.student_no, student.name, test.no, test.point "
 			+ "FROM test "
 			+ "INNER JOIN student "
 			+ "ON test.student_no = student.no "
@@ -75,7 +75,7 @@ public class TestListSubjectDao extends Dao {
 				+ "AND student.class_num = ? "
 				+ "AND test.subject_cd = ? ";
 		// SQL文のソート
-		String order = "ORDER BY student_no ASC, no ASC";
+		String order = "ORDER BY test.student_no ASC, test.no ASC;";
 
 		try {
 			// プリペアードステートメントにSQL文をセット

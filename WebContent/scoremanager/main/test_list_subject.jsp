@@ -71,7 +71,7 @@
 				</div>
 			</form>
 			<c:choose>
-				<c:when test="${students.size()>0}">
+				<c:when test="${test_list.size()>0}">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -84,21 +84,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="student" items="${students}">
+							<c:forEach var="student" items="${test_list}">
 								<tr>
 									<td>${student.entYear}</td>
 									<td>${student.classNum}</td>
-									<td>${student.no}</td>
-									<td>${student.name}</td>
+									<td>${student.studentNo}</td>
+									<td>${student.studentName}</td>
+							<c:forEach var="p" items="${student.points}">
+									<td>${p.}</td>
+							</c:forEach>
 									<td>
-										<c:choose>
-											<c:when test="$[point1] ！= null">
-												${point1}
-											</c:when>
-											<c:otherwise>
-												-
-											</c:otherwise>
-										</c:choose>
 									</td>
 									<td>
 										<c:choose>
