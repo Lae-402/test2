@@ -83,31 +83,28 @@
 								<th>２回</th>
 							</tr>
 						</thead>
+
 						<tbody>
 							<c:forEach var="student" items="${test_list}">
 								<tr>
-									<td>${student.entYear}</td>
-									<td>${student.classNum}</td>
-									<td>${student.studentNo}</td>
-									<td>${student.studentName}</td>
-							<c:forEach var="p" items="${student.points}">
-									<td>${p.}</td>
-							</c:forEach>
-									<td>
-									</td>
-									<td>
+									<c:forEach var="p" items="${student.points}">
 										<c:choose>
-											<c:when test="$[point2] ！= null">
-												${point2}
+											<c:when test="$[s.key==1]">
+												<td>${student.entYear}</td>
+												<td>${student.classNum}</td>
+												<td>${student.studentNo}</td>
+												<td>${student.studentName}</td>
+												<td>${p.value}</td>
 											</c:when>
 											<c:otherwise>
-												-
+												<td>${p.value}</td>
 											</c:otherwise>
 										</c:choose>
-									</td>
+									</c:forEach>
 								</tr>
 							</c:forEach>
 						</tbody>
+
 					</table>
 				</c:when>
 				<c:otherwise>
