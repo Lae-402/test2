@@ -37,6 +37,7 @@
 							</c:forEach>
 						</select>
 					</div>
+
 					<div class="col-4">
 						<label class="form-label" for="subject-f3-select">科目</label> <select
 							class="form-select" id="subject-f3-select" name="subject_cd">
@@ -47,12 +48,14 @@
 							</c:forEach>
 						</select>
 					</div>
+
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
 					</div>
 					<div class="mt-2 text-warning">${errors.get("su")}</div>
 				</div>
 			</form>
+
 			<form action="TestListStudentExecute.action" method="get">
 				<div class="row mx-3 align-items-center rounded"
 					id="filter">
@@ -62,7 +65,7 @@
 					</div>
 					<div class="col-4">
 						<label class="form-label" for="subject-f4-select">学生番号</label>
-						<input class="form-select"   type="text" name="student_no" placeholder="学生番号を入力してください" style="background-image: none;">
+						<input class="form-select"   type="text" name="student_no" placeholder="学生番号を入力してください" style="background-image: none;" required>
 					</div>
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
@@ -71,6 +74,7 @@
 				</div>
 			</form>
 		</div>
+
 			<c:choose>
 				<c:when test="${test_list.size()>0}">
 					<table class="table table-hover">

@@ -61,7 +61,7 @@
 					</div>
 					<div class="col-4">
 						<label class="form-label" for="subject-f4-select">学生番号</label>
-						<input class="form-select"   type="text" name="student_no" placeholder="学生番号を入力してください" style="background-image: none;">
+						<input class="form-select"   type="text" name="student_no" placeholder="学生番号を入力してください" style="background-image: none;" required>
 					</div>
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
