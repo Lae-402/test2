@@ -89,7 +89,7 @@
 								<tr>
 									<c:forEach var="p" items="${student.points}">
 										<c:choose>
-											<c:when test="$[s.key==1]">
+											<c:when test="$[k.key==1]">
 												<td>${student.entYear}</td>
 												<td>${student.classNum}</td>
 												<td>${student.studentNo}</td>
