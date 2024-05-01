@@ -51,7 +51,7 @@ public class StudentCreateExecuteAction  extends Action {
     		request.setAttribute("no", no);
     		request.setAttribute("name", name);
     		request.setAttribute("class_num", classNum);
-    		errors.put( "error1", "入学年度を指定してください" );
+    		errors.put( "error1", "入学年度を選択してください" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("StudentCreate.action").forward(request, response);
     	// 条件：入力された学生番号の学生が既存
