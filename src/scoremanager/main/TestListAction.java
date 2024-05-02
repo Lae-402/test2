@@ -34,12 +34,14 @@ public class TestListAction extends Action {
     	// 入学年度
     	List<Integer> entYearSet = new ArrayList<>();
 
+
     	// ログインユーザの所属学校のクラス一覧／科目一覧
     	classList = cNumDao.filter( teacher.getSchool() );
     	subjectList = sDao.filter( teacher.getSchool() );
     	for ( Subject s : subjectList ) {
     		subjectNameList.add( s.getName() );
     	}
+
     	// 10年前から10年後まで年をリストに追加
     	LocalDate todaysDate = LocalDate.now();
     	int year = todaysDate.getYear();

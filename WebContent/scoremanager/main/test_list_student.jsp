@@ -17,6 +17,7 @@
 						<label class="form-label" for="subject-f1-select"
 							style="margin-left: 30px;">科目情報</label>
 					</div>
+
 					<div class="col-2">
 						<label class="form-label" for="subject-f1-select">入学年度</label> <select
 							class="form-select" id="subject-f1-select" name="ent_year">

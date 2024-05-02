@@ -7,7 +7,7 @@
 
 	<c:param name="content">
 		<section class="me-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理（学生）</h2>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理（科目）</h2>
 
 		<div class="border" style="margin-bottom: 20px;">
 			<form action="TestListSubjectExecute.action" method="get">
@@ -17,6 +17,7 @@
 						<label class="form-label" for="subject-f1-select"
 							style="margin-left: 30px;">科目情報</label>
 					</div>
+
 					<div class="col-2">
 						<label class="form-label" for="subject-f1-select">入学年度</label> <select
 							class="form-select" id="subject-f1-select" name="ent_year">
@@ -27,6 +28,7 @@
 							</c:forEach>
 						</select>
 					</div>
+
 					<div class="col-2">
 						<label class="form-label" for="subject-f2-select">クラス</label> <select
 							class="form-select" id="subject-f2-select" name="class_num">
@@ -42,7 +44,7 @@
 						<label class="form-label" for="subject-f3-select">科目</label> <select
 							class="form-select" id="subject-f3-select" name="subject_cd">
 							<option value="0">--------</option>
-							<c:forEach var="num" items="${subjecList}">
+							<c:forEach var="num" items="${subjectList}">
 								<option value="${num}"
 									<c:if test="${num==param.f3}">selected</c:if>>${num}</option>
 							</c:forEach>
@@ -56,6 +58,7 @@
 				</div>
 			</form>
 
+
 			<form action="TestListStudentExecute.action" method="get">
 				<div class="row mx-3 align-items-center rounded"
 					id="filter">
@@ -63,6 +66,8 @@
 						<label class="form-label" for="subject-f1-select"
 							style="margin-left: 30px;">学生情報</label>
 					</div>
+
+
 					<div class="col-4">
 						<label class="form-label" for="subject-f4-select">学生番号</label>
 						<input class="form-select"   type="text" name="student_no" placeholder="学生番号を入力してください" style="background-image: none;" required>
@@ -109,9 +114,9 @@
 								</tr>
 							</c:forEach>
 						</tbody>
-
 					</table>
 				</c:when>
+
 				<c:otherwise>
 					<p>学生情報が存在しませんでした</p>
 				</c:otherwise>
