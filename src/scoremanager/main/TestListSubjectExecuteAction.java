@@ -96,14 +96,17 @@ public class TestListSubjectExecuteAction extends Action {
         // レスポンス値をセット===================
         // 入学年度の選択肢
         request.setAttribute("ent_year_set", entYearSet);//入学年度選択用リスト
+      //結果表示用
         request.setAttribute("entyear", entYear);//結果表示用　入学年度
 
         // クラスの選択肢
         request.setAttribute("classList", classList);//クラス選択用リスト
+      //結果表示用
         request.setAttribute("classnum", classNum);//結果表示用 クラス番号
 
         // 科目の選択肢
         request.setAttribute("subjectList", subjectList);//科目洗濯用リスト
+      //結果表示用
         request.setAttribute("subjectcd", subjectCd);//結果表示用 学生番号
         request.setAttribute("subjectname", subjectName);//結果表示用　学生氏名
 
