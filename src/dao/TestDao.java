@@ -17,7 +17,7 @@ public class TestDao extends Dao {
 
 	// ※getメソッドは使わないので作りません
 
-	private String baseSql = "SELECT student.ent_year, test.class_num, test.student_no, student.name, test.no, test.point "
+	private String baseSql = "SELECT student.ent_year, test.class_num, test.student_no, student.name, test.subject_cd, test.no, test.point "
 			+ "FROM test "
 			+ "INNER JOIN student "
 			+ "ON test.student_no = student.no "
@@ -32,14 +32,23 @@ public class TestDao extends Dao {
 			while (rSet.next()) {
 				// インスタンスを初期化
 				Student student = new Student();
+				Subject subject = new Subject();
 				Test test = new Test();
 				// 学生インスタンスに検索結果をセット
+				student.setSchool(school);
 				student.setEntYear(rSet.getInt("ent_year"));
 				student.setClassNum(rSet.getString("class_num"));
 				student.setNo(rSet.getString("student_no"));
 				student.setName(rSet.getString("name"));
+				subject.setCd(rSet.getString("subject_cd"));
+				test.setSubject(subject);
 				test.setStudent(student);
-				test.setPoint(rSet.getInt("point"));
+
+				Integer p = rSet.getInt("point");
+				if (rSet.wasNull()) {
+				    p = 666;
+				}
+				test.setPoint(p);
 				// リストに追加
 				list.add(test);
 			}
@@ -131,13 +140,73 @@ public class TestDao extends Dao {
 		return list;
 	}
 
-//	public boolean save ( List<Test> list ) throws Exception {
-//
-//	}
+	public boolean save ( List<Test> list ) throws Exception {
+		// コネクションを確立
+		Connection connection = getConnection();
+		try {
+			for ( Test test : list ) {
+				save( test, connection );
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// コネクションを閉じる
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (Exception e) {
+					throw e;
+				}
+			}
+		}
 
-//	private boolean save ( Test test, Connection connection ) throws Exception {
-//
-//	}
+		return true;
+	}
+
+	private boolean save ( Test test, Connection connection ) throws Exception {
+		PreparedStatement statement = null;
+		int count = 0;
+
+		try {
+			statement = connection.prepareStatement(
+					"update test set point=? where student_no=? and subject_cd=? and school_cd=? and no=? and class_num=?;");
+			System.out.println("\n★ " + test.getStudent().getName());
+			if ( test.getPoint()==666 ) {
+				statement.setObject( 1, null );
+				System.out.println("point：null");
+			} else {
+				statement.setInt( 1, test.getPoint() );
+				System.out.println("point："+test.getPoint());
+			}
+			statement.setString( 2, test.getStudent().getNo() );
+			System.out.println("student_no：" + test.getStudent().getNo());
+			statement.setString( 3, test.getSubject().getCd() );
+			System.out.println("subject_cd：" + test.getSubject().getCd());
+			statement.setString( 4, test.getSchool().getCd() );
+			System.out.println("school_cd：" + test.getSchool().getCd());
+			statement.setInt( 5, test.getNo() );
+			System.out.println("no：" + test.getNo());
+			statement.setString( 6, test.getStudent().getClassNum() );
+			System.out.println("class_num：" + test.getStudent().getClassNum());
+
+			// プリペアードステートメントを実行
+			count = statement.executeUpdate();
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+
+		}
+		return true;
+	}
 
 //	public boolean delete ( List<Test> list ) throws Exception {
 //
