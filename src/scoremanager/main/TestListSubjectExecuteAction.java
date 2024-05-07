@@ -73,7 +73,7 @@ public class TestListSubjectExecuteAction extends Action {
 		if (entYear ==0 || classnum ==0 || subjectcd ==0) {
 			System.out.println("入力値チェックkエラー分岐");
 			// エラーメッセージをセット
-			errors.put("error", "入学年度とクラスと科目を指定してください");
+			errors.put("error", "入学年度とクラスと科目を選択してください");
 			// エラーメッセージをリクエストにセット
 			request.setAttribute("errors", errors);
 			// 条件：全ての項目が選択されている場合
