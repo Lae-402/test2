@@ -165,7 +165,6 @@ public class TestDao extends Dao {
 
 	private boolean save ( Test test, Connection connection ) throws Exception {
 		PreparedStatement statement = null;
-		int count = 0;
 
 		try {
 			statement = connection.prepareStatement(
@@ -190,7 +189,7 @@ public class TestDao extends Dao {
 			System.out.println("class_num：" + test.getStudent().getClassNum());
 
 			// プリペアードステートメントを実行
-			count = statement.executeUpdate();
+			statement.executeUpdate();
 
 		} catch (Exception e) {
 			throw e;
