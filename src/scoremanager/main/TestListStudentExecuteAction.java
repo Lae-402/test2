@@ -89,9 +89,13 @@ public class TestListStudentExecuteAction extends Action {
 		request.setAttribute("student_name", studentName);
 		// リクエスト属性に学生の成績リストを設定
 		request.setAttribute("test_list", testListStudent);
+		//学生名,学生番号
+		request.setAttribute("studentno", studentNo);
 
 
-		// 学生が存在しない場合の処理
+		// 学生が存在しない場合の処理(不明
+		//学生情報があるけど成績情報がない場合の処理
+
 		if (studentName == null) {
 			System.out.println("分岐１");
 			// エラーメッセージを設定
