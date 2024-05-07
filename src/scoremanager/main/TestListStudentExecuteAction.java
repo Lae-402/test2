@@ -77,11 +77,14 @@ public class TestListStudentExecuteAction extends Action {
 
 		// リクエスト属性に値を設定
 		// リクエスト属性に入学年度のリストを設定
+		//一覧表示用
 		request.setAttribute("ent_year_set", entYearSet);
 		// リクエスト属性にクラスのリストを設定
-		request.setAttribute("class_list", classList);
+		//一覧表示用
+		request.setAttribute("classList", classList);
 		// リクエスト属性に科目のリストを設定
-		request.setAttribute("subject_list", subjectList);
+		//一覧表示用
+		request.setAttribute("subjectList", subjectList);
 		// リクエスト属性に学生名を設定
 		request.setAttribute("student_name", studentName);
 		// リクエスト属性に学生の成績リストを設定

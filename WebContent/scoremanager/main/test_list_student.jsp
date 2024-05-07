@@ -19,36 +19,37 @@
 					</div>
 
 					<div class="col-2">
-						<label class="form-label" for="subject-f1-select">入学年度</label> <select
-							class="form-select" id="subject-f1-select" name="ent_year">
-							<option value="0">--------</option>
-							<c:forEach var="code" items="${ent_year_set}">
-								<option value="${code}"
-									<c:if test="${code==param.f1}">selected</c:if>>${code}</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="col-2">
-						<label class="form-label" for="subject-f2-select">クラス</label> <select
-							class="form-select" id="subject-f2-select" name="class_num">
-							<option value="0">--------</option>
-							<c:forEach var="num" items="${classList}">
-								<option value="${num}"
-									<c:if test="${num==param.f2}">selected</c:if>>${num}</option>
-							</c:forEach>
-						</select>
-					</div>
+							<label class="form-label" for="subject-f1-select">入学年度</label> <select
+								class="form-select" id="subject-f1-select" name="ent_year">
+								<option value="0">--------</option>
+								<c:forEach var="year" items="${ent_year_set}">
+									<option value="${year}"
+										<c:if test="${year==param.f1}">selected</c:if>>${year}</option>
+								</c:forEach>
+							</select>
+						</div>
 
-					<div class="col-4">
-						<label class="form-label" for="subject-f3-select">科目</label> <select
-							class="form-select" id="subject-f3-select" name="subject_cd">
-							<option value="0">--------</option>
-							<c:forEach var="num" items="${subjecList}">
-								<option value="${num}"
-									<c:if test="${num==param.f3}">selected</c:if>>${num}</option>
-							</c:forEach>
-						</select>
-					</div>
+						<div class="col-2">
+							<label class="form-label" for="subject-f2-select">クラス</label> <select
+								class="form-select" id="subject-f2-select" name="class_num">
+								<option value="0">--------</option>
+								<c:forEach var="classli" items="${classList}">
+									<option value="${classli}"
+										<c:if test="${classli==param.f2}">selected</c:if>>${classli}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<div class="col-4">
+							<label class="form-label" for="subject-f3-select">科目</label> <select
+								class="form-select" id="subject-f3-select" name="subject_cd">
+								<option value="0">--------</option>
+								<c:forEach var="subject" items="${subjectList}">
+									<option value="${subject.cd}"
+										<c:if test="${subject.cd==param.f3}">selected</c:if>>${subject.name}</option>
+								</c:forEach>
+							</select>
+						</div>
 
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
@@ -64,6 +65,7 @@
 						<label class="form-label" for="subject-f1-select"
 							style="margin-left: 30px;">学生情報</label>
 					</div>
+
 					<div class="col-4">
 						<label class="form-label" for="subject-f4-select">学生番号</label>
 						<input class="form-select"   type="text" name="student_no" placeholder="学生番号を入力してください" style="background-image: none;" required>
@@ -87,18 +89,20 @@
 								<th>点数</th>
 							</tr>
 						</thead>
+
 						<tbody>
-							<c:forEach var="student" items="${test_list}">
+							<c:forEach var="testli" items="${test_list}">
 								<tr>
-									<td>${student.subjectName}</td>
-									<td>${student.subjectCd}</td>
-									<td>${student.num}</td>
-									<td>${student.point}</td>
+									<td>${testli.subjectName}</td>
+									<td>${testli.subjectCd}</td>
+									<td>${testli.num}</td>
+									<td>${testli.point}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</c:when>
+
 				<c:otherwise>
 					<p>学生情報が存在しませんでした</p>
 				</c:otherwise>
