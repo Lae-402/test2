@@ -97,7 +97,6 @@
 
 						<tbody>
 							<c:forEach var="testli" items="${test_list}">
-							<%-- 	<c:forEach var="year" items="${entyear}"> --%>
 									<tr>
 										<c:forEach var="p" items="${testli.points}">
 											<c:choose>
@@ -106,7 +105,16 @@
 													<td>${classnum}</td>
 													<td>${testli.studentNo}</td>
 													<td>${testli.studentName}</td>
-													<td>${p.value}</td>
+													<td>
+											            <c:choose>
+											                <c:when test="${p.value==666}">
+											                	-
+											                </c:when>
+											                <c:otherwise>
+											                    ${p.value}
+											                </c:otherwise>
+											            </c:choose>
+										            </td>
 												</c:when>
 												<c:otherwise>
 													<td>${p.value}</td>
@@ -115,7 +123,6 @@
 										</c:forEach>
 									</tr>
 								</c:forEach>
-					<%-- 		</c:forEach> --%>
 						</tbody>
 
 					</table>
