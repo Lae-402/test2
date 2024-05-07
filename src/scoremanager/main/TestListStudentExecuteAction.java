@@ -95,7 +95,8 @@ public class TestListStudentExecuteAction extends Action {
 		if (studentName == null) {
 			System.out.println("分岐１");
 			// エラーメッセージを設定
-			errors.put("no_stu", "学生が登録されていません");
+			errors.put("no_stu", "成績情報が存在しませんでした");
+			request.setAttribute( "errors", errors );
 			// JSPにフォワード
 			request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
 		} else {
