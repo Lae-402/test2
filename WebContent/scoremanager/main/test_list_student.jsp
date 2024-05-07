@@ -79,12 +79,7 @@
 				</form>
 			</div>
 
-
 			<p>氏名: ${student_name} (${studentno})</p>
-
-
-
-
 
 			<c:choose>
 
@@ -113,8 +108,6 @@
 				</c:when>
 
 				<c:otherwise>
-
-
 					<p>成績情報が存在しませんでした</p>
 				</c:otherwise>
 			</c:choose>

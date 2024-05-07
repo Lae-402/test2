@@ -67,10 +67,10 @@ public class TestListSubjectExecuteAction extends Action {
 		System.out.print(subjectCd);
 
 		entYear = Integer.parseInt(entYearStr);
-		classnum = Integer.parseInt(classNum);
-		subjectcd = Integer.parseInt(subjectCd);
+	/*	classnum = Integer.parseInt(classNum);
+		subjectcd = Integer.parseInt(subjectCd);*/
 		//どうもNullではなく0で選択されるみたいなので条件変更
-		if (entYear ==0 || classnum ==0 || subjectcd ==0) {
+		if ("0".equals(entYearStr) || "0".equals(classNum) || "0".equals(subjectCd)) {
 			System.out.println("入力値チェックkエラー分岐");
 			// エラーメッセージをセット
 			errors.put("error", "入学年度とクラスと科目を選択してください");
