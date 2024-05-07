@@ -43,7 +43,7 @@
 						<label class="form-label" for="subject-f3-select">科目</label> <select
 							class="form-select" id="subject-f3-select" name="subject_cd">
 							<option value="0">--------</option>
-							<c:forEach var="subject" items="${subjecList}">
+							<c:forEach var="subject" items="${subjectList}">
 								<option value="${subject.cd}"
 									<c:if test="${subject.cd==param.f3}">selected</c:if>>${subject.name}</option>
 							</c:forEach>
