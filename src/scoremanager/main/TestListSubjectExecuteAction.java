@@ -40,12 +40,13 @@ public class TestListSubjectExecuteAction extends Action {
 		// クラスの選択肢
 		List<String> classList = null;
 		String classNum = null;
-
+		int classnum = 0;
 		// 科目の選択肢
 
 		List<Subject> subjectList = null;
 /*		List<String> subjectNameList = new ArrayList<>();*/
 		String subjectCd = null;
+		int subjectcd = 0;
 		String subjectName = null;
 
 		// 得点（検索結果）
@@ -61,17 +62,25 @@ public class TestListSubjectExecuteAction extends Action {
 
 		// 入力値のチェック=======================
 		// 条件：選択されていない項目がある場合
-		if (entYearStr == null || classNum == null || subjectCd == null) {
+		System.out.print(entYearStr);
+		System.out.print(classNum);
+		System.out.print(subjectCd);
+
+		entYear = Integer.parseInt(entYearStr);
+		classnum = Integer.parseInt(classNum);
+		subjectcd = Integer.parseInt(subjectCd);
+		//どうもNullではなく0で選択されるみたいなので条件変更
+		if (entYear ==0 || classnum ==0 || subjectcd ==0) {
 			System.out.println("入力値チェックkエラー分岐");
 			// エラーメッセージをセット
-			errors.put("error", "入学年度とクラスと科目を指定してください");
+			errors.put("error", "入学年度とクラスと科目を選択してください");
 			// エラーメッセージをリクエストにセット
 			request.setAttribute("errors", errors);
 			// 条件：全ての項目が選択されている場合
 		} else {
 			System.out.println("入力値チェック正常分岐");
 			// 入学年度を数値型に変換
-			entYear = Integer.parseInt(entYearStr);
+	/*		entYear = Integer.parseInt(entYearStr);*/
 			// 検索実行
 			testListSubject = tDao.filter(entYear, classNum, sDao.get(subjectCd, teacher.getSchool()),teacher.getSchool());
 			// 科目名を取得
