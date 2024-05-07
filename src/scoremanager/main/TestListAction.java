@@ -22,6 +22,7 @@ public class TestListAction extends Action {
 		HttpSession session = request.getSession();
     	Teacher teacher = (Teacher)session.getAttribute("user");
 
+
     	// 初期化===============================
     	// Dao
     	ClassNumDao cNumDao = new ClassNumDao();
@@ -30,17 +31,18 @@ public class TestListAction extends Action {
     	List<String>classList = null;
     	// 科目一覧
     	List<Subject> subjectList = null;
-    	List<String> subjectNameList = new ArrayList<>();
-    	// 入学年度
+    	/*List<String> subjectNameList = new ArrayList<>();//何のため？
+*/    	// 入学年度
     	List<Integer> entYearSet = new ArrayList<>();
 
 
     	// ログインユーザの所属学校のクラス一覧／科目一覧
     	classList = cNumDao.filter( teacher.getSchool() );
     	subjectList = sDao.filter( teacher.getSchool() );
-    	for ( Subject s : subjectList ) {
+   /* 	for ( Subject s : subjectList ) {
     		subjectNameList.add( s.getName() );
     	}
+*/
 
     	// 10年前から10年後まで年をリストに追加
     	LocalDate todaysDate = LocalDate.now();
@@ -49,10 +51,12 @@ public class TestListAction extends Action {
     		entYearSet.add(i);
     	}
 
+
     	// レスポンス値をセット=======================
     	request.setAttribute( "ent_year_set", entYearSet );
     	request.setAttribute( "classList", classList );
-    	request.setAttribute( "subjecList", subjectList );
+    	request.setAttribute( "subjectList", subjectList );
+
 
     	// フォワード===============================
     	request.getRequestDispatcher("test_list.jsp").forward(request, response);

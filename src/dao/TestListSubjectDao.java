@@ -47,6 +47,7 @@ public class TestListSubjectDao extends Dao {
 					points.put(2, rSet.getInt("point"));
 				}
 				testListSubject.setPoints(points);
+				System.out.println("testsubjectfilter---"+testListSubject);
 				// リストに追加
 				list.add(testListSubject);
 			}
@@ -56,6 +57,7 @@ public class TestListSubjectDao extends Dao {
 
 		return list;
 	}
+
 
 	/**
 	 * filterメソッド
@@ -79,6 +81,8 @@ public class TestListSubjectDao extends Dao {
 		try {
 			// プリペアードステートメントにSQL文をセット
 			statement = connection.prepareStatement(baseSql + condition + order);
+			/*System.out.println(statement);*/
+
 			// プリペアードステートメントに学校コードをバインド
 			statement.setString(1, school.getCd());
 			// プリペアードステートメントにバインド
@@ -86,9 +90,11 @@ public class TestListSubjectDao extends Dao {
 			statement.setString(3, classNum);
 			statement.setString(4, subject.getCd());
 			// プライベートステートメントを実行
+			System.out.println(statement);
 			rSet = statement.executeQuery();
 			// リストへの格納処理を実行
 			list = postFilter(rSet);
+			/*System.out.println(list);*/
 		} catch (Exception e) {
 			throw e;
 		} finally {
