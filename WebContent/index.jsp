@@ -4,6 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script>location.href="/test2/scoremanager/Login.action"</script>
+<script>location.href="Login.action"</script>
 </head>
 </html>

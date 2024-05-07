@@ -7,7 +7,7 @@
 	<c:param name="content">
 		<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
 		<p class="p mb-3 fw-norma bg-opacity-5 py-1 px-2" style="background-color: darkseagreen; text-align: center">登録が完了しました</p>
-		<a href="/test2/scoremanager/StudentCreate.action">戻る</a>
-		<a href="/test2/scoremanager/main/StudentList.action">成績参照</a>
+		<a href="StudentCreate.action">戻る</a>
+		<a href="StudentList.action">成績参照</a>
 	</c:param>
 </c:import>>
