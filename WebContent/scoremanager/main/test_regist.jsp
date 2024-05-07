@@ -20,7 +20,7 @@
 							<option value="0">--------</option>
 							<c:forEach var="ent" items="${ent_year_list}">
 								<option value="${ent}"
-									<c:if test="${ent==in_ey}">selected</c:if>>${ent}</option>
+									<c:if test="${ent==f1}">selected</c:if>>${ent}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -42,7 +42,7 @@
 							<option value="0">--------</option>
 							<c:forEach var="subject" items="${subject_list}">
 								<option value="${subject.cd}"
-									<c:if test="${subject.cd==in_s}">selected</c:if>>${subject.name}</option>
+									<c:if test="${subject.cd==f3.cd}">selected</c:if>>${subject.name}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -54,7 +54,7 @@
 							<option value="0">--------</option>
 							<c:forEach var="no" items="${no_list}">
 								<option value="${no}"
-									<c:if test="${no==in_n}">selected</c:if>>${no}</option>
+									<c:if test="${no==f4}">selected</c:if>>${no}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -69,25 +69,49 @@
 
 			<c:choose>
 				<c:when test="${tests.size()>0}">
-					<div>科目：${subject.name}(${in_n})</div>
-					<table class="table table-hover">
-						<tr>
-							<th>入学年度</th>
-							<th>クラス</th>
-							<th>学生番号</th>
-							<th>氏名</th>
-							<th>点数</th>
-						</tr>
-						<c:forEach var="t" items="${tests}">
+					<div>科目：${f3.name} (${f4}回)</div>
+					<form action="TestRegistExecute.action" method="get">
+						<table class="table table-hover">
 							<tr>
-								<td>${t.getStudent().getEntYear()}</td>
-								<td>${t.getStudent().getClassNum()}</td>
-								<td>${t.getStudent().getNo()}</td>
-								<td>${t.getStudent().getName()}</td>
-								<td>${t.point}</td>
+								<th>入学年度</th>
+								<th>クラス</th>
+								<th>学生番号</th>
+								<th>氏名</th>
+								<th>点数</th>
 							</tr>
-						</c:forEach>
-					</table>
+							<c:forEach var="t" items="${tests}">
+								<tr>
+									<td style="padding: 0 0 0 10px;"><p style="margin:0; padding:0; line-height: 57px;">${t.getStudent().getEntYear()}</p></td>
+									<td style="padding: 0 0 0  5px;"><p style="margin:0; padding:0; line-height: 57px;">${t.getStudent().getClassNum()}</p></td>
+									<td style="padding: 0 0 0 10px;"><p style="margin:0; padding:0; line-height: 57px;">${t.getStudent().getNo()}</p></td>
+									<td style="padding: 0 0 0 10px;"><p style="margin:0; padding:0; line-height: 57px;">${t.getStudent().getName()}</p></td>
+							        <td>
+							        	<input name="p${t.getStudent().getNo()}"
+							        	 type="number" max="100" min="0"
+							        	 class="form-select" style="background-image: none; border-color: black; "
+
+								            <c:choose>
+								                <c:when test="${t.point==666}">
+								                    placeholder="未登録"
+								                </c:when>
+								                <c:otherwise>
+								                    value="${t.point}"
+								                </c:otherwise>
+								            </c:choose>
+								            >
+										<div class="mt-2 text-warning">${errors.get("p"+t.getStudent().getNo())}</div>
+							        </td>
+								</tr>
+							</c:forEach>
+						</table>
+						<input type="hidden" name="f1" value="${f1}">
+						<input type="hidden" name="f2" value="${f2}">
+						<input type="hidden" name="f3" value="${f3.cd}">
+						<input type="hidden" name="f4" value="${f4}">
+						<div class="col-3" style="width: 130px;">
+							<button class="btn btn-secondary" id="filter-button">登録して終了</button>
+						</div>
+					</form>
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>

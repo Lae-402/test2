@@ -3,7 +3,9 @@ package scoremanager.main;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,7 @@ import dao.SubjectDao;
 import dao.TestDao;
 import tool.Action;
 
-public class TestRegistAction extends Action {
+public class TestRegistExecuteAction extends Action {
 
 	@Override
     public void execute (HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -46,10 +48,14 @@ public class TestRegistAction extends Action {
     	// 回数
     	List<Integer> noList = Arrays.asList( 1, 2 );
     	String in_no = "0";
-    	// 検索結果
+    	// 登録・変更データ
+    	List<Test> in_tests = new ArrayList<>();
     	List<Test> tests = null;
     	// エラーメッセージ
-    	String error = null;
+    	Map<String, String> errors = new HashMap<>();
+//    	errors.put("f1", "クラスを指定する場合は入学年度も指定してください");
+    	// フォワード用
+    	String forward = "test_regist_done.jsp";
 
     	in_entYear = request.getParameter("f1");
     	in_classNum = request.getParameter("f2");
@@ -58,17 +64,37 @@ public class TestRegistAction extends Action {
 
     	subject = sDao.get( in_subject, school );
 
-    	// 条件：検索後
-    	if ( in_entYear!=null && in_classNum!=null && in_subject!=null && in_no!=null ) {
-	    	// 条件：検索条件が全て選択されている
-	    	if ( !in_entYear.equals("0") && !in_classNum.equals("0") && !in_subject.equals("0") && !in_no.equals("0") ) {
-	    	    tests = tDao.filter(Integer.parseInt(in_entYear), in_classNum, subject, Integer.parseInt(in_no), school);
-	    	// 条件：検索後、選択されていない検索条件がある
-	    	} else {
-	    	    error = "入学年度とクラスと科目と回数を選択してください";
-	    	}
+    	tests = tDao.filter(Integer.parseInt(in_entYear), in_classNum, subject, Integer.parseInt(in_no), school);
+
+    	String in_p_no = null;
+    	int in_p = -1;
+
+    	// 入力処理
+    	for ( Test t : tests ) {
+    		in_p_no = "p" + t.getStudent().getNo();
+    		// 条件：入力あり（空欄でない）
+    		if ( request.getParameter( in_p_no ) != "" ) {
+    			in_p = Integer.parseInt(request.getParameter( in_p_no ));
+    			// 条件：入力値が不正
+    			if ( in_p<0 || in_p>100  ) {
+    				errors.put( in_p_no, "0~100の範囲で入力してください" );
+    				forward = "test_regist.jsp";
+    			}
+    		// 条件：入力なし（空欄である）
+    		} else {
+    			in_p = 666;
+    		}
+    		t.setSchool(school);
+    		t.setNo(Integer.parseInt(in_no));
+    		t.setSubject(subject);
+    		t.setPoint( in_p );
+    		in_tests.add(t);
     	}
-    	// 条件；
+
+    	//****************************************************************
+    	//ここでTestDaoのsaveにin_testsをわたす
+    	tDao.save(in_tests);
+    	//
 
     	// フォワード用=============================
     	// ログインユーザの所属学校のクラス一覧／科目一覧
@@ -85,23 +111,19 @@ public class TestRegistAction extends Action {
     	if ( subject != null ) {
     		request.setAttribute( "subject_name", subject.getName() );
     	}
-    	if (  tests != null ) {
-    		request.setAttribute( "tests", tests );
-    	}
+    	request.setAttribute( "tests", tests );
     	request.setAttribute( "ent_year_list", entYearSet );
-    	if ( in_entYear != null ) {
-    		request.setAttribute( "f1", Integer.parseInt(in_entYear) );
-    	}
+    	request.setAttribute( "in_ey", in_entYear );
     	request.setAttribute( "class_list", classList );
     	request.setAttribute( "f2", in_classNum );
     	request.setAttribute( "subject_list", subjectList );
-    	request.setAttribute( "f3", subject );
+    	request.setAttribute( "in_s", subject );
     	request.setAttribute( "no_list", noList );
-    	request.setAttribute( "f4", in_no );
-    	request.setAttribute( "error", error );
+    	request.setAttribute( "in_n", in_no );
+    	request.setAttribute( "errors", errors );
 
     	// フォワード===============================
-    	request.getRequestDispatcher("test_regist.jsp").forward(request, response);
+    	request.getRequestDispatcher(forward).forward(request, response);
 
 	}
 }
