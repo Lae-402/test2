@@ -13,44 +13,57 @@
 
 	<!--actionがないと飛ばせないよね-->
 	<form action="StudentUpdateExecute.action" method="get">
-		<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
+		<div
+		 style="padding: 20px;">
 
 			<c:forEach var="s" items="${student}">
 
-				<label class="form-label" for="student-f1-select">入学年度</label>
-				<input readonly type="text" name="ent_year" value="${s.entYear}" style="border: 0;">
-
-				<label class="form-label">学生番号</label>
-				<input readonly type="text" name="no" value="${s.no}" style="border: 0;">
-
-				<label class="form-label">氏名</label>
-				<input type="text" name="name" value="${s.name}" required>
-
-				<label class="form-label" for="student-f2-select">クラス</label>
-				<select class="form-select" id="student-f2-select" name="class_num">
-					<c:forEach var="num" items="${class_num_set}">
-						<option value="${num}" <c:if test="${num==s.classNum}">selected</c:if>>${num}</option>
-					</c:forEach	>
-				</select>
-
-				<div class="col-2 form-check text-center">
-					<label class="form-check-label" for="student-f3-check">在学中
-						<%-- sが在学中の場合はcheckedを記述 --%>
-						<input class="form-check-input" type="checkbox" id="student-f3-check" name="is_attend" value="t"
-						<c:if test="${s.isAttend()}">checked</c:if> />
-					</label>
+				<div style="margin-bottom: 15px;">
+					<label class="form-label" for="student-f1-select"
+					 style="margin-bottom: 0;">入学年度</label><br>
+					　<input readonly type="text" name="ent_year" value="${s.entYear}" style="border: 0;">
 				</div>
 
-				<div class="col-2 text-center">
-				<button class="btn btn-secondary" style="background-color: #007bff; border-radius: 15px;">変更</button>
-			</div>
+				<div style="margin-bottom: 15px;">
+					<label class="form-label"
+					 style="margin-bottom: 0;">学生番号</label><br>
+					　<input readonly type="text" name="no" value="${s.no}" style="border: 0;">
+				</div>
+
+				<div>
+					<label class="form-label">氏名</label>
+					<input class="form-select"  type="text" name="name" value="${s.name}" required
+				 style="background-image: none;">
+				 </div>
+
+				<div>
+					<label class="form-label" for="student-f2-select">クラス</label>
+					<select class="form-select" id="student-f2-select" name="class_num">
+						<c:forEach var="num" items="${class_num_set}">
+							<option value="${num}" <c:if test="${num==s.classNum}">selected</c:if>>${num}</option>
+						</c:forEach	>
+					</select>
+				</div>
+
+				<div style="margin: 15px 0 20px 0;">
+					<label class="form-check-label" for="student-f3-check">在学中</label>
+					<%-- sが在学中の場合はcheckedを記述 --%>
+					<input class="form-check-input" type="checkbox" id="student-f3-check" name="is_attend" value="t"
+					<c:if test="${s.isAttend()}">checked</c:if> />
+				</div>
+
+				<div class="col-2 tect-center">
+					<button class="btn btn-secondary"
+					 style="background: #0d6efd; color: white; border: none; border-radius: 5px;"
+					 onMouseOut="this.style.background='#0d6efd'"
+					 onMouseOver="this.style.background='rgba(0, 50, 253, 0.6)'">変更</button>
+				</div>
 
 				<div class="mt-2 text-warning">${errors.get("f1")}</div>
 			</c:forEach>
-
+			<a href="StudentList.action">戻る</a>
 		</div>
 	</form>
-	<a href="StudentList.action">戻る</a>
 </section>
 </c:param>
 </c:import>

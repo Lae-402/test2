@@ -92,7 +92,7 @@
 
 								            <c:choose>
 								                <c:when test="${t.point==666}">
-								                    placeholder="未登録"
+								                	<%-- 空白 --%>
 								                </c:when>
 								                <c:otherwise>
 								                    value="${t.point}"

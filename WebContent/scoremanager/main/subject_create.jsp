@@ -11,13 +11,15 @@
             <form action="SubjectCreateExecute.action" method="post">
                 <div style="position: relative; margin-bottom: 20px;">
                     <label for="subjectcd" style="display: block;">科目コード</label>
-                    <input type="text" id="subjectcd" name="subjectcd" placeholder="科目コードを入力してください" value="${subjectcd}" maxlength="20" required />
+                    <input type="text" name="subjectcd" placeholder="科目コードを入力してください" value="${subjectcd}" maxlength="20" required
+                     class="form-select" style="background-image: none;"/>
                    	<div class="mt-2 text-warning">${errors.get("error1")}</div>
                    	<div class="mt-2 text-warning">${errors.get("error2")}</div>
                 </div>
                 <div style="position: relative; margin-bottom: 20px;">
                     <label for="subjectname" style="display: block;">科目名</label>
-                    <input type="text" id="subjectname" name="subjectname" placeholder="科目名を入力してください" value="${subjectname}" maxlength="20" required />
+                    <input type="text" name="subjectname" placeholder="科目名を入力してください" value="${subjectname}" maxlength="20" required
+                     class="form-select" style="background-image: none;"/>
 
                 </div>
                 <div class="col-2 text-left">
