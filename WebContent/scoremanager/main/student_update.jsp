@@ -44,13 +44,15 @@
 						</c:forEach	>
 					</select>
 				</div>
-
+				
+				<!-- 在学中チェックボックス関連 -->
 				<div style="margin: 15px 0 20px 0;">
 					<label class="form-check-label" for="student-f3-check">在学中</label>
 					<%-- sが在学中の場合はcheckedを記述 --%>
 					<input class="form-check-input" type="checkbox" id="student-f3-check" name="is_attend" value="t"
-					<c:if test="${s.isAttend()}">checked</c:if> />
+					 <c:if test="${s.isAttend()}">checked</c:if> />
 				</div>
+
 
 				<div class="col-2 tect-center">
 					<button class="btn btn-secondary"
@@ -58,6 +60,7 @@
 					 onMouseOut="this.style.background='#0d6efd'"
 					 onMouseOver="this.style.background='rgba(0, 50, 253, 0.6)'">変更</button>
 				</div>
+
 
 				<div class="mt-2 text-warning">${errors.get("f1")}</div>
 			</c:forEach>

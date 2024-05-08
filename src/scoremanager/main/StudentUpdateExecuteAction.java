@@ -28,6 +28,7 @@ public class StudentUpdateExecuteAction  extends Action {
     	String no = "";                // 入力値：学生番号
     	String name = "";              // 入力値：氏名
     	String classNum = "";         // 入力値：クラス
+    	String attend = "";
     	boolean isAttend = false;     // 在学フラグ：一律でtrue
     	boolean done = false;
 
@@ -37,9 +38,10 @@ public class StudentUpdateExecuteAction  extends Action {
     	no = request.getParameter("no");
     	name = request.getParameter("name");
     	classNum = request.getParameter("class_num");
-    	if ( request.getParameter("is_attend") == "t" ) {
-    		isAttend = true;
+    	if ("t".equals(request.getParameter("is_attend"))) {
+    	    isAttend = true;
     	}
+
 
     	System.out.println( "sutudentにセット" );
     	student.setEntYear(entYear);
