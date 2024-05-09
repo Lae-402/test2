@@ -36,7 +36,11 @@ public class TestListStudentDao extends Dao {
 				testListStudent.setSubjectName(rSet.getString("name"));
 				testListStudent.setSubjectCd(rSet.getString("subject_cd"));
 				testListStudent.setNum(rSet.getInt("no"));;
-				testListStudent.setPoint(rSet.getInt("point"));;
+				Integer p = rSet.getInt("point");
+				if (rSet.wasNull()) {
+				    p = 666;
+				}
+				testListStudent.setPoint(p);
 				// リストに追加
 				list.add(testListStudent);
 			}
@@ -60,7 +64,7 @@ public class TestListStudentDao extends Dao {
 		// リザルトセット
 		ResultSet rSet = null;
 		// SQL文の条件
-		String condition = "AND test.student_no = ? ";
+		String condition = "AND test.student_no = ? AND subject.deleted = false AND test.point IS NOT NULL ";
 		// SQL文のソート
 		String order = "ORDER BY subject_cd ASC, no ASC";
 
