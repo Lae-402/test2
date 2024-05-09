@@ -47,7 +47,7 @@
 							</c:forEach>
 						</select>
 					</div>
-
+					
 					<!-- 検索ボタン -->
 					<div class="flex-fill mx-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
