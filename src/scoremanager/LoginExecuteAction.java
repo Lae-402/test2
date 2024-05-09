@@ -60,8 +60,6 @@ public class LoginExecuteAction extends Action {
 			url = "login.jsp";
 			req.getRequestDispatcher(url).forward(req, res);
 		}
-
-//		req.getRequestDispatcher(url).forward(req, res);
 	}
 
 }

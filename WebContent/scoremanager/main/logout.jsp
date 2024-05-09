@@ -7,6 +7,6 @@
 	<c:param name="content">
 		<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">ログアウト</h2>
 		<p class="p mb-3 fw-norma bg-opacity-5 py-1 px-2" style="background-color: darkseagreen; text-align: center">ログアウトしました</p>
-		<a href="Login.action">ログイン</a>
+	<a href="/test2/scoremanager/Login.action">ログイン</a>
 	</c:param>
 </c:import>
