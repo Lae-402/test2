@@ -18,8 +18,8 @@
 					</div>
 
 					<div class="col-2">
-						<label class="form-label" for="subject-f1-select">入学年度</label> <select
-							class="form-select" id="subject-f1-select" name="ent_year">
+						<label class="form-label" for="subject-f1-select">入学年度</label>
+						<select class="form-select" id="subject-f1-select" name="f1">
 							<option value="0">--------</option>
 							<c:forEach var="code" items="${ent_year_set}">
 								<option value="${code}"

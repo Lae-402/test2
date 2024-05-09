@@ -56,9 +56,9 @@ public class TestListSubjectExecuteAction extends Action {
 		Map<String, String> errors = new HashMap<>();
 
 		// リクエストパラメータの取得================
-		entYearStr = request.getParameter("ent_year");//入学年度
-		classNum = request.getParameter("class_num");//クラス番号
-		subjectCd = request.getParameter("subject_cd");//科目
+		entYearStr = request.getParameter("f1");//入学年度
+		classNum = request.getParameter("f2");//クラス番号
+		subjectCd = request.getParameter("f3");//科目
 
 		// 入力値のチェック=======================
 		// 条件：選択されていない項目がある場合

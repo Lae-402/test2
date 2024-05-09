@@ -20,7 +20,7 @@
 
 						<div class="col-2">
 							<label class="form-label" for="subject-f1-select">入学年度</label> <select
-								class="form-select" id="subject-f1-select" name="ent_year">
+								class="form-select" id="subject-f1-select" name="f1">
 								<option value="0">--------</option>
 								<c:forEach var="year" items="${ent_year_set}">
 									<option value="${year}"
@@ -31,7 +31,7 @@
 
 						<div class="col-2">
 							<label class="form-label" for="subject-f2-select">クラス</label> <select
-								class="form-select" id="subject-f2-select" name="class_num">
+								class="form-select" id="subject-f2-select" name="f2">
 								<option value="0">--------</option>
 								<c:forEach var="classli" items="${classList}">
 									<option value="${classli}"
@@ -42,7 +42,7 @@
 
 						<div class="col-4">
 							<label class="form-label" for="subject-f3-select">科目</label> <select
-								class="form-select" id="subject-f3-select" name="subject_cd">
+								class="form-select" id="subject-f3-select" name="f3">
 								<option value="0">--------</option>
 								<c:forEach var="subject" items="${subjectList}">
 									<option value="${subject.cd}"
