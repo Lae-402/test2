@@ -12,7 +12,7 @@
 			 style="padding: 10px 0; background: rgba(33,37,41, 0.07); text-align: center;">ログイン</h2>
 			<form action="LoginExecute.action" method="post">
 				<div
-				 style="margin: 10px 0; display: flex; justify-content: center;">${error.get("error")}</div>
+				 style="margin: 10px 0; display: flex; justify-content: center;">${errors.get("error")}</div>
 				<div
 				 style="display: flex; justify-content: center;">
 					<input type="text" name="id" placeholder="ID" required

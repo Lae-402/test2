@@ -1,8 +1,8 @@
 package scoremanager;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,8 +50,8 @@ public class LoginExecuteAction extends Action {
 		} else {
 			// 認証失敗の場合
 			// エラーメッセージをセット
-			List<String> errors = new ArrayList<>();
-			errors.add("IDまたはパスワードが確認できませんでした");
+	    	Map<String, String> errors = new HashMap<>();
+    		errors.put( "error", "ログインに失敗しました。IDまたはパスワードが正しくありません。" );
 			req.setAttribute("errors", errors);
 			// 入力された教員IDをセット
 			req.setAttribute("id", id);
