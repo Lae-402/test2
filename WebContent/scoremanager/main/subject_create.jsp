@@ -10,15 +10,15 @@
             <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報登録</h2>
             <form action="SubjectCreateExecute.action" method="post">
                 <div style="position: relative; margin-bottom: 20px;">
-                    <label for="subjectcd" style="display: block;">科目コード</label>
-                    <input type="text" name="subjectcd" placeholder="科目コードを入力してください" value="${subjectcd}" maxlength="20" required
+                    <label style="display: block;">科目コード</label>
+                    <input type="text" name="cd" placeholder="科目コードを入力してください" value="${cd}" maxlength="20" required
                      class="form-select" style="background-image: none;"/>
                    	<div class="mt-2 text-warning">${errors.get("error1")}</div>
                    	<div class="mt-2 text-warning">${errors.get("error2")}</div>
                 </div>
                 <div style="position: relative; margin-bottom: 20px;">
-                    <label for="subjectname" style="display: block;">科目名</label>
-                    <input type="text" name="subjectname" placeholder="科目名を入力してください" value="${subjectname}" maxlength="20" required
+                    <label style="display: block;">科目名</label>
+                    <input type="text" name="name" placeholder="科目名を入力してください" value="${name}" maxlength="20" required
                      class="form-select" style="background-image: none;"/>
 
                 </div>

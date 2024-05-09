@@ -1,6 +1,5 @@
 package scoremanager.main;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,16 +25,20 @@ public class StudentUpdateAction  extends Action {
 
     	// 初期化
     	String no = "";
-    	List<Student> student = new ArrayList<Student>(1);
+    	Student student = null;
 
     	// 選択した学生の学生情報をstudentに
     	no = request.getParameter("no");
-    	student.add(sDao.get(no));
+    	student = sDao.get(no);
 
     	// クラス一覧
     	List<String>list = cNumDao.filter( teacher.getSchool() );
 
-    	request.setAttribute( "student",student );
+    	request.setAttribute( "ent_year", student.getEntYear() );
+    	request.setAttribute( "no", student.getNo() );
+    	request.setAttribute( "name", student.getName() );
+    	request.setAttribute( "num", student.getClassNum() );
+    	request.setAttribute( "is_attend", student.isAttend() );
     	request.setAttribute( "class_num_set",list );
 
     	request.getRequestDispatcher("student_update.jsp").forward(request, response);

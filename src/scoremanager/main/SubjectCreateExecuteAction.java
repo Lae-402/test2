@@ -41,25 +41,21 @@ public class SubjectCreateExecuteAction  extends Action {
 
     	// ２
     	// リクエストパラメータの取得
-    	System.out.println( "リクエスト取得" );
-
-    	subjectcd = request.getParameter("subjectcd");
-    	subjectname = request.getParameter("subjectname");
-
+    	subjectcd = request.getParameter("cd");
+    	subjectname = request.getParameter("name");
 
     	/*えらー
     	科目コード文字数エラー*/
     	// 条件：科目コード3文字
     	int num =subjectcd.length();
     	if ( num != 3 ) {
-
     		request.setAttribute("subjectcd", subjectcd);
     		request.setAttribute("subjectname", subjectname);
     		errors.put( "error1", "科目コードは3文字で入力してください" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("SubjectCreate.action").forward(request, response);
-    	}else if  ( sDao.get(subjectcd,school) != null ) {
 
+    	}else if  ( sDao.get(subjectcd,school) != null ) {
     		request.setAttribute("subjectcd",subjectcd);
     		request.setAttribute("subjectname", subjectname);
     		errors.put( "error2", "科目コードが重複しています" );
@@ -72,7 +68,6 @@ public class SubjectCreateExecuteAction  extends Action {
         	subject.setCd(subjectcd);
         	subject.setSchool( school );
 
-        	System.out.println( "結果格納" );
         	done = sDao.save(subject);
 
 
@@ -80,7 +75,6 @@ public class SubjectCreateExecuteAction  extends Action {
 
     	if (done) {
 			// JSPへフォワード
-			System.out.println( "create_doneにフォワード" );
 			request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);
     	}
     }

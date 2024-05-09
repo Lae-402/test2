@@ -16,9 +16,9 @@ public class SubjectCreateAction  extends Action {
     	// ＤＢからデータ取得
     	request.setAttribute( "errors", request.getAttribute("errors") );
    /* 	科目コード入力覧*/
-    	request.setAttribute( "subjectcd", request.getAttribute("subjectcd") );
+    	request.setAttribute( "cd", request.getAttribute("cd") );
     /*	科目名入力*/
-    	request.setAttribute( "subjectname", request.getAttribute("subjectname") );
+    	request.setAttribute( "name", request.getAttribute("name") );
 
 
     	// ７
