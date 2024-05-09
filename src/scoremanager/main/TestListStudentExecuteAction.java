@@ -58,7 +58,6 @@ public class TestListStudentExecuteAction extends Action {
 			studentName = student.getName();
 			// 学生の成績を取得
 			testListStudent = tDao.filter(student);
-			System.out.println("student: " + testListStudent);
 		}
 
 		// 10年前から10年後までの年をリストに追加
@@ -97,7 +96,6 @@ public class TestListStudentExecuteAction extends Action {
 		//学生情報があるけど成績情報がない場合の処理
 
 		if (studentName == null) {
-			System.out.println("分岐１");
 			// エラーメッセージを設定
 			errors.put("no_stu", "成績情報が存在しませんでした");
 			request.setAttribute( "errors", errors );
@@ -105,7 +103,6 @@ public class TestListStudentExecuteAction extends Action {
 			request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
 		} else {
 			// 学生が存在する場合の処理
-			System.out.println("分岐２");
 			// JSPにフォワード
 			request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
 		}

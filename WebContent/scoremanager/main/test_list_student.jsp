@@ -79,7 +79,14 @@
 				</form>
 			</div>
 
-			<p>氏名: ${student_name} (${studentno})</p>
+			<p>
+				<c:choose>
+					<c:when test="${not empty student_name}">
+						氏名: ${student_name}
+					</c:when>
+				</c:choose>
+				( ${studentno} )
+			</p>
 
 			<c:choose>
 
@@ -100,7 +107,16 @@
 									<td>${testli.subjectName}</td>
 									<td>${testli.subjectCd}</td>
 									<td>${testli.num}</td>
-									<td>${testli.point}</td>
+									<td>
+										<c:choose>
+											<c:when test="${testli.point==666}">
+												-
+											</c:when>
+											<c:otherwise>
+												${testli.point}
+											</c:otherwise>
+										</c:choose>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
