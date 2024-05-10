@@ -118,7 +118,16 @@
 										            </td>
 												</c:when>
 												<c:otherwise>
-													<td>${p.value}</td>
+													<td>
+											            <c:choose>
+											                <c:when test="${p.value==666}">
+											                	-
+											                </c:when>
+											                <c:otherwise>
+											                    ${p.value}
+											                </c:otherwise>
+											            </c:choose>
+											           </td>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>

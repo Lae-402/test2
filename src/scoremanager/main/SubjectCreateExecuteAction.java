@@ -49,15 +49,15 @@ public class SubjectCreateExecuteAction  extends Action {
     	// 条件：科目コード3文字
     	int num =subjectcd.length();
     	if ( num != 3 ) {
-    		request.setAttribute("subjectcd", subjectcd);
-    		request.setAttribute("subjectname", subjectname);
+    		request.setAttribute("cd", subjectcd);
+    		request.setAttribute("name", subjectname);
     		errors.put( "error1", "科目コードは3文字で入力してください" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("SubjectCreate.action").forward(request, response);
 
     	}else if  ( sDao.get(subjectcd,school) != null ) {
-    		request.setAttribute("subjectcd",subjectcd);
-    		request.setAttribute("subjectname", subjectname);
+    		request.setAttribute("cd",subjectcd);
+    		request.setAttribute("name", subjectname);
     		errors.put( "error2", "科目コードが重複しています" );
     		request.setAttribute( "errors", errors );
     		request.getRequestDispatcher("SubjectCreate.action").forward(request, response);

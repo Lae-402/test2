@@ -30,7 +30,9 @@
     		<a href="SubjectDeleteExecute.action?cd=${cd}"
     		 style="text-decoration: none; color: white;">削除</a>
     	</div>
-    <a href="SubjectList.action">戻る</a>
+    <div style="margin-top: 60px;">
+		<a href="SubjectList.action">戻る</a>
+     </div>
 </body>
 </html>
 </c:param>

@@ -31,6 +31,7 @@ public class TestListSubjectDao extends Dao {
 		// リストを初期化
 		List<TestListSubject> list = new ArrayList<>();
 		Map<Integer, Integer> points = new HashMap<>();
+		Integer p = null;
 		try {
 			// リザルトセットを全件走査
 			while (rSet.next()) {
@@ -42,10 +43,18 @@ public class TestListSubjectDao extends Dao {
 				testListSubject.setStudentName(rSet.getString("name"));
 				testListSubject.setClassNum(rSet.getString("class_num"));
 				if ( rSet.getInt("no") == 1 ) {
-					points.put(1, rSet.getInt("point"));
+					p = rSet.getInt("point");
+					if (rSet.wasNull()) {
+						p = 666;
+					}
+					points.put(1, p);
 					testListSubject.setPoints(points);
 				} else {
-					points.put(2, rSet.getInt("point"));
+					p = rSet.getInt("point");
+					if (rSet.wasNull()) {
+						p = 666;
+					}
+					points.put(2, p);
 					testListSubject.setPoints(points);
 					list.add(testListSubject);
 				}
