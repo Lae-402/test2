@@ -29,18 +29,27 @@ public class TestListSubjectDao extends Dao {
 	 */
 	private List<TestListSubject> postFilter(ResultSet rSet) throws Exception {
 		// リストを初期化
+		Integer tmp = 0;
+		TestListSubject testListSubject = new TestListSubject();
 		List<TestListSubject> list = new ArrayList<>();
 		Map<Integer, Integer> points = new HashMap<>();
 		Integer p = null;
+		String sNo = "";
 		try {
 			// リザルトセットを全件走査
 			while (rSet.next()) {
+				sNo = rSet.getString("student_no");
+				if ( tmp!=0 && tmp==2 || testListSubject.getStudentNo() != sNo ) {
+					list.add(testListSubject);
+//					System.out.println("★add");
+				}
 				// 学生インスタンスを初期化
-				TestListSubject testListSubject = new TestListSubject();
+				testListSubject = new TestListSubject();
 				// 学生インスタンスに検索結果をセット
 				testListSubject.setEntYear(rSet.getInt("ent_year"));
-				testListSubject.setStudentNo(rSet.getString("student_no"));
+				testListSubject.setStudentNo(sNo);
 				testListSubject.setStudentName(rSet.getString("name"));
+//				System.out.println(testListSubject.getStudentName()+"("+sNo+"）");
 				testListSubject.setClassNum(rSet.getString("class_num"));
 				if ( rSet.getInt("no") == 1 ) {
 					p = rSet.getInt("point");
@@ -49,6 +58,7 @@ public class TestListSubjectDao extends Dao {
 					}
 					points.put(1, p);
 					testListSubject.setPoints(points);
+					tmp = 1;
 				} else {
 					p = rSet.getInt("point");
 					if (rSet.wasNull()) {
@@ -56,8 +66,9 @@ public class TestListSubjectDao extends Dao {
 					}
 					points.put(2, p);
 					testListSubject.setPoints(points);
-					list.add(testListSubject);
+					tmp = 2;
 				}
+//				System.out.println(tmp+" 回目："+testListSubject.getPoint(tmp));
 			/*	testListSubject.setPoints(points);
 				System.out.println("testsubjectfilter---"+testListSubject);*/
 			}
@@ -65,6 +76,9 @@ public class TestListSubjectDao extends Dao {
 			e.printStackTrace();
 		}
 
+		// 最後の追加処理
+//		System.out.println("★add");
+		list.add(testListSubject);
 		return list;
 	}
 
