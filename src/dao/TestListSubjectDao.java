@@ -43,13 +43,14 @@ public class TestListSubjectDao extends Dao {
 				testListSubject.setClassNum(rSet.getString("class_num"));
 				if ( rSet.getInt("no") == 1 ) {
 					points.put(1, rSet.getInt("point"));
+					testListSubject.setPoints(points);
 				} else {
 					points.put(2, rSet.getInt("point"));
+					testListSubject.setPoints(points);
+					list.add(testListSubject);
 				}
-				testListSubject.setPoints(points);
-				System.out.println("testsubjectfilter---"+testListSubject);
-				// リストに追加
-				list.add(testListSubject);
+			/*	testListSubject.setPoints(points);
+				System.out.println("testsubjectfilter---"+testListSubject);*/
 			}
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
