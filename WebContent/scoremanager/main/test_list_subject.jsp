@@ -106,13 +106,13 @@
 													<td>${testli.studentName}</td>
 													<td>
 														<c:choose>
-															<c:when test="${empty testli.getPoint(1)}">-</c:when>
+															<c:when test="${empty testli.getPoint(1) || testli.getPoint(1)=='666' }">-</c:when>
 															<c:otherwise>${testli.getPoint(1)}</c:otherwise>
 														</c:choose>
 													</td>
 													<td>
 														<c:choose>
-															<c:when test="${empty testli.getPoint(2)}">-</c:when>
+															<c:when test="${empty testli.getPoint(2) || testli.getPoint(2)=='666'}">-</c:when>
 															<c:otherwise>${testli.getPoint(2)}</c:otherwise>
 														</c:choose>
 													</td>
