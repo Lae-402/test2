@@ -49,8 +49,6 @@ public class TestListSubjectExecuteAction extends Action {
 
 		// 得点（検索結果）
 		List<TestListSubject> testListSubject = null;
-		Map<String, Integer> iii = new HashMap<>();
-		iii.put("3", 777);
 
 		// エラーメッセージ
 		Map<String, String> errors = new HashMap<>();
@@ -120,7 +118,6 @@ public class TestListSubjectExecuteAction extends Action {
 
 		// 検索結果
 		request.setAttribute("test_list", testListSubject);//結果表示用
-		request.setAttribute("iii", iii);
 
 
 		// フォワード==========================
