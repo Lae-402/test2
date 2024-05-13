@@ -77,9 +77,9 @@ insert into SCHOOL (CD, NAME) values
 
 -- 教員
 insert into TEACHER (ID, PASSWORD, NAME, SCHOOL_CD) values
-('admin', 'password', '大原太郎', 'oom');
-('admin2', 'password2', '大原次郎', 'oom');
-('admin3', 'password3', '大原三郎', 'oom');
+('admin', 'password', '大原太郎', 'oom'),
+('admin2', 'password2', '大原次郎', 'oom'),
+('admin3', 'password3', '大原三郎', 'oom'),
 ('admin4', 'password4', '東京太郎', 'tky');
 
 -- クラス番号
