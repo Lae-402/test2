@@ -40,17 +40,17 @@ public class TestListSubjectExecuteAction extends Action {
 		// クラスの選択肢
 		List<String> classList = null;
 		String classNum = null;
-		int classnum = 0;
 		// 科目の選択肢
 
 		List<Subject> subjectList = null;
 /*		List<String> subjectNameList = new ArrayList<>();*/
 		String subjectCd = null;
-		int subjectcd = 0;
 		String subjectName = null;
 
 		// 得点（検索結果）
 		List<TestListSubject> testListSubject = null;
+		Map<String, Integer> iii = new HashMap<>();
+		iii.put("3", 777);
 
 		// エラーメッセージ
 		Map<String, String> errors = new HashMap<>();
@@ -81,10 +81,10 @@ public class TestListSubjectExecuteAction extends Action {
 			System.out.println("入力値チェック正常分岐");
 			// 入学年度を数値型に変換
 	/*		entYear = Integer.parseInt(entYearStr);*/
-			// 検索実行
-			testListSubject = tDao.filter(entYear, classNum, sDao.get(subjectCd, teacher.getSchool()),teacher.getSchool());
 			// 科目名を取得
 			subjectName = sDao.get(subjectCd, teacher.getSchool()).getName();
+			// 検索実行
+			testListSubject = tDao.filter(entYear, classNum, sDao.get(subjectCd, teacher.getSchool()),teacher.getSchool());
 		}
 
 		// フォワード用========================
@@ -97,10 +97,7 @@ public class TestListSubjectExecuteAction extends Action {
 		// ログインユーザの所属学校のクラス一覧／科目一覧を取得
 		classList = cNumDao.filter(teacher.getSchool());
 		subjectList = sDao.filter(teacher.getSchool());
-	/*	for ( Subject s : subjectList ) {
-			subjectNameList.add( s.getName() );
-		}
-*/
+
 
 		System.out.print("学年選択"+entYear);
 		System.out.print("学年"+classNum);
@@ -122,7 +119,8 @@ public class TestListSubjectExecuteAction extends Action {
 		request.setAttribute("subjectname", subjectName);//結果表示用　学生氏名
 
 		// 検索結果
-		request.setAttribute("test_list", testListSubject);//結果表示用　
+		request.setAttribute("test_list", testListSubject);//結果表示用
+		request.setAttribute("iii", iii);
 
 
 		// フォワード==========================

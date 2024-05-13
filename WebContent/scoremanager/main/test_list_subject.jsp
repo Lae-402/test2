@@ -96,41 +96,26 @@
 							</tr>
 						</thead>
 
+
 						<tbody>
 							<c:forEach var="testli" items="${test_list}">
 									<tr>
-										<c:forEach var="p" items="${testli.points}">
-											<c:choose>
-												<c:when test="${p.key==1}">
 													<td>${entyear}</td>
 													<td>${classnum}</td>
 													<td>${testli.studentNo}</td>
 													<td>${testli.studentName}</td>
 													<td>
-											            <c:choose>
-											                <c:when test="${p.value==666}">
-											                	-
-											                </c:when>
-											                <c:otherwise>
-											                    ${p.value}
-											                </c:otherwise>
-											            </c:choose>
-										            </td>
-												</c:when>
-												<c:otherwise>
+														<c:choose>
+															<c:when test="${empty testli.getPoint(1)}">-</c:when>
+															<c:otherwise>${testli.getPoint(1)}</c:otherwise>
+														</c:choose>
+													</td>
 													<td>
-											            <c:choose>
-											                <c:when test="${p.value==666}">
-											                	-
-											                </c:when>
-											                <c:otherwise>
-											                    ${p.value}
-											                </c:otherwise>
-											            </c:choose>
-											           </td>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
+														<c:choose>
+															<c:when test="${empty testli.getPoint(2)}">-</c:when>
+															<c:otherwise>${testli.getPoint(2)}</c:otherwise>
+														</c:choose>
+													</td>
 									</tr>
 								</c:forEach>
 						</tbody>

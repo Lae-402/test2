@@ -39,9 +39,12 @@ public class TestListSubjectDao extends Dao {
 			// リザルトセットを全件走査
 			while (rSet.next()) {
 				sNo = rSet.getString("student_no");
-				if ( tmp!=0 && tmp==2 || testListSubject.getStudentNo() != sNo ) {
-					list.add(testListSubject);
-//					System.out.println("★add");
+				if ( tmp!=0  ) {
+					if ( tmp==2 || testListSubject.getStudentNo() != sNo ) {
+						testListSubject.setPoints(points);
+						list.add(testListSubject);
+						System.out.println("★add");
+					}
 				}
 				// 学生インスタンスを初期化
 				testListSubject = new TestListSubject();
@@ -49,7 +52,7 @@ public class TestListSubjectDao extends Dao {
 				testListSubject.setEntYear(rSet.getInt("ent_year"));
 				testListSubject.setStudentNo(sNo);
 				testListSubject.setStudentName(rSet.getString("name"));
-//				System.out.println(testListSubject.getStudentName()+"("+sNo+"）");
+				System.out.println(testListSubject.getStudentName()+"("+sNo+"）");
 				testListSubject.setClassNum(rSet.getString("class_num"));
 				if ( rSet.getInt("no") == 1 ) {
 					p = rSet.getInt("point");
@@ -57,7 +60,7 @@ public class TestListSubjectDao extends Dao {
 						p = 666;
 					}
 					points.put(1, p);
-					testListSubject.setPoints(points);
+//					testListSubject.setPoints(points);
 					tmp = 1;
 				} else {
 					p = rSet.getInt("point");
@@ -65,10 +68,10 @@ public class TestListSubjectDao extends Dao {
 						p = 666;
 					}
 					points.put(2, p);
-					testListSubject.setPoints(points);
+//					testListSubject.setPoints(points);
 					tmp = 2;
 				}
-//				System.out.println(tmp+" 回目："+testListSubject.getPoint(tmp));
+				System.out.println(tmp+" 回目："+testListSubject.getPoint(tmp));
 			/*	testListSubject.setPoints(points);
 				System.out.println("testsubjectfilter---"+testListSubject);*/
 			}
@@ -77,7 +80,7 @@ public class TestListSubjectDao extends Dao {
 		}
 
 		// 最後の追加処理
-//		System.out.println("★add");
+		System.out.println("★add");
 		list.add(testListSubject);
 		return list;
 	}
